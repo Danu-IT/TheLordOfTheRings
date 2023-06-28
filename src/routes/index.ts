@@ -1,5 +1,6 @@
-import { ComponentType } from "react";
-import Home from "../pages/General/Home";
+import { ComponentType, lazy } from "react";
+
+const Home = lazy(() => import('../pages/General/Home'))
 
 export interface IRoute {
   path: string;

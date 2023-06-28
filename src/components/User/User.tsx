@@ -1,5 +1,6 @@
-import { styled } from "styled-components";
 import { useAppSelector } from "../../hooks/redux";
+
+import { styled } from "styled-components";
 import { FaRegUserCircle } from "react-icons/fa";
 
 const User = () => {
@@ -12,7 +13,7 @@ const User = () => {
     <Container>
       {isAuth ? (
         <UserFull>
-          {user.photoURL && <img src={user.photoURL}></img>}
+          {user.photoURL && <img src={user.photoURL && user.photoURL}></img>}
           <div>{user.displayName}</div>
         </UserFull>
       ) : (
@@ -31,7 +32,7 @@ const Guest = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-right: 20px;
+  margin-right: 50px;
 `;
 
 export default User;
