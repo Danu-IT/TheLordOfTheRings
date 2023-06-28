@@ -7,7 +7,7 @@ import { Fragment, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App = () => {
-  const isAuth = useAppSelector((state) => state.isAuthSlice.isAuth);
+  const isAuth = useAppSelector((state) => state.authSlice.isAuth);
   return (
     <BrowserRouter>
       <Suspense fallback={<div>Loading...</div>}>
@@ -20,7 +20,7 @@ const App = () => {
                     path={route.path}
                     element={<route.component></route.component>}></Route>
                   <Route
-                    path="*"
+                    path="/*"
                     element={<Home />}></Route>
                 </Fragment>
               ))
@@ -30,7 +30,7 @@ const App = () => {
                     path={route.path}
                     element={<route.component></route.component>}></Route>
                   <Route
-                    path="*"
+                    path="/*"
                     element={<Home />}></Route>
                 </Fragment>
               ))}

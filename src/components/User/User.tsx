@@ -5,8 +5,8 @@ import { FaRegUserCircle } from "react-icons/fa";
 
 const User = () => {
   const { isAuth, user } = useAppSelector((state) => ({
-    isAuth: state.isAuthSlice.isAuth,
-    user: state.isAuthSlice.user,
+    isAuth: state.authSlice.isAuth,
+    user: state.authSlice.user,
   }));
 
   return (
@@ -18,7 +18,7 @@ const User = () => {
         </UserFull>
       ) : (
         <Guest>
-          <FaRegUserCircle size={30}></FaRegUserCircle>
+          <FaRegUserCircle size={30} />
           Войти
         </Guest>
       )}

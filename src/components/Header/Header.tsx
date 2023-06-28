@@ -1,19 +1,19 @@
 import Logo from "../Logo";
 import User from "../User";
 import { useAppSelector } from "../../hooks/redux";
-
-import { styled } from "styled-components";
 import AuthButtons from "../AuthButtons/AuthButtons";
 
+import { styled } from "styled-components";
+
 const Header = () => {
-  const isAuth = useAppSelector((state) => state.isAuthSlice.isAuth);
+  const isAuth = useAppSelector((state) => state.authSlice.isAuth);
 
   return (
     <Container>
-      <Logo></Logo>
+      <Logo />
       <Right>
-        {isAuth ? <></> : <AuthButtons></AuthButtons>}
-        <User></User>
+        {isAuth ? <>Избранное</> : <AuthButtons />}
+        <User />
       </Right>
     </Container>
   );

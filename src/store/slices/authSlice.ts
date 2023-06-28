@@ -2,7 +2,7 @@ import { User } from "../../interfaces/user";
 
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-interface isAuthState {
+interface authState {
     isAuth: boolean;
     user: User;
 }
@@ -14,7 +14,7 @@ const initialStateUser: User = {
     uid: '',
 }
 
-const initialState: isAuthState = {
+const initialState: authState = {
     isAuth: false,
     user: initialStateUser,
 }

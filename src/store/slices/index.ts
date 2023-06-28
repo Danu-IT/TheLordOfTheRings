@@ -1,5 +1,5 @@
-import isAuthSlice from './isAuthSlice';
+import authSlice from './authSlice';
 
 export default {
-    isAuthSlice,
+    authSlice,
 }
