@@ -7,33 +7,33 @@ import { Fragment, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App = () => {
-  const isAuth = useAppSelector((state) => state.isAuthSlice.isAuth);
+  const isAuth = useAppSelector((state) => state.authSlice.isAuth);
   return (
     <BrowserRouter>
       <Suspense fallback={<div>Loading...</div>}>
-        <Header></Header>
+        <Header />
         <Routes>
           {isAuth
             ? privateRoutes.map((route) => (
                 <Fragment key={route.path}>
                   <Route
                     path={route.path}
-                    element={<route.component></route.component>}></Route>
-                  <Route
-                    path="*"
-                    element={<Home />}></Route>
+                    element={<route.component></route.component>}
+                  />
                 </Fragment>
               ))
             : publicRoutes.map((route) => (
                 <Fragment key={route.path}>
                   <Route
                     path={route.path}
-                    element={<route.component></route.component>}></Route>
-                  <Route
-                    path="*"
-                    element={<Home />}></Route>
+                    element={<route.component></route.component>}
+                  />
                 </Fragment>
               ))}
+          <Route
+            path="*"
+            element={<Home />}
+          />
         </Routes>
       </Suspense>
     </BrowserRouter>

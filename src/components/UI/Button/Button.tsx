@@ -6,13 +6,22 @@ interface ButtonProps {
   bg: string;
   color: string;
   onClick?: () => void;
+  disabled?: boolean;
 }
 
-const Button: FC<ButtonProps> = ({ children, bg, color, onClick }) => {
+const Button: FC<ButtonProps> = ({
+  children,
+  bg,
+  color,
+  onClick,
+  disabled,
+}) => {
   return (
     <Container
+      onClick={onClick}
       bg={bg}
-      color={color}>
+      color={color}
+      disabled={!!disabled}>
       {children}
     </Container>
   );
@@ -21,16 +30,19 @@ const Button: FC<ButtonProps> = ({ children, bg, color, onClick }) => {
 interface ButtonStyleProps {
   bg: string;
   color: string;
+  disabled: boolean;
 }
 
-const Container = styled.div<ButtonStyleProps>`
+const Container = styled.button<ButtonStyleProps>`
   color: ${({ color }) => color};
-  background-color: ${({ bg }) => bg};
+  background-color: ${({ bg, disabled }) => (!disabled ? bg : "gray")};
   padding: 10px 20px;
   border-radius: 15px;
   cursor: pointer;
+  border: none;
+  outline: none;
   &:hover {
-    opacity: 0.8;
+    opacity: ${({ disabled }) => (!disabled ? "0.8" : "1.0")};
   }
 `;
 

@@ -2,7 +2,7 @@ import { User } from "../../interfaces/user";
 
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-interface isAuthState {
+interface authState {
     isAuth: boolean;
     user: User;
 }
@@ -14,7 +14,7 @@ const initialStateUser: User = {
     uid: '',
 }
 
-const initialState: isAuthState = {
+const initialState: authState = {
     isAuth: false,
     user: initialStateUser,
 }
@@ -26,11 +26,11 @@ export const isAuthSlice = createSlice({
         changeAuth: (state, action: PayloadAction<boolean>) => {
             state.isAuth = action.payload;
         },
-        changeUid: (state, action: PayloadAction<User>) => {
+        changeUser: (state, action: PayloadAction<User>) => {
             state.user = action.payload;
         }
     }
 })
 
 export default isAuthSlice.reducer;
-export const { changeAuth, changeUid } = isAuthSlice.actions;
+export const { changeAuth, changeUser } = isAuthSlice.actions;
