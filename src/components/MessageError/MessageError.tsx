@@ -4,15 +4,14 @@ import { BiError } from "react-icons/bi";
 
 interface MessageErrorProps {
   message: string;
-  error: any;
 }
 
-const MessageError: FC<MessageErrorProps> = ({ error, message }) => {
+const MessageError: FC<MessageErrorProps> = ({ message }) => {
   return (
     <div>
       <Message>
-        <BiError></BiError>
-        {message || "Error"}
+        <BiError />
+        {message}
       </Message>
     </div>
   );

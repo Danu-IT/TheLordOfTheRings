@@ -24,7 +24,7 @@ const Login = () => {
     formState: { errors, isValid },
     handleSubmit,
     reset,
-  } = useForm<formAuthorisation>({
+  } = useForm<FormAuthorisation>({
     defaultValues: {
       email: "",
       password: "",
@@ -32,7 +32,7 @@ const Login = () => {
     mode: "onBlur",
   });
 
-  const handlerLogin = async (data: formAuthorisation) => {
+  const handlerLogin = async (data: FormAuthorisation) => {
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password);
       dispatch(changeAuth(true));

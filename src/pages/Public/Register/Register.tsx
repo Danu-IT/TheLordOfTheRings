@@ -13,7 +13,7 @@ const Register = () => {
     formState: { errors, isValid },
     handleSubmit,
     reset,
-  } = useForm<formRegistrasion>({
+  } = useForm<FormRegistrasion>({
     defaultValues: {
       email: "",
       password: "",
@@ -22,7 +22,7 @@ const Register = () => {
     mode: "onBlur",
   });
 
-  const handlerSubmit = async (data: formRegistrasion) => {
+  const handlerSubmit = async (data: FormRegistrasion) => {
     if (data.cpassword !== data.password) {
       return false;
     }

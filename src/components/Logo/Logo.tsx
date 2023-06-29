@@ -9,7 +9,7 @@ const Logo = () => {
   return (
     <Container onClick={handleClick}>
       <div>Ring Info</div>
-      <LogoPic src={LogoPng}></LogoPic>
+      <LogoPic src={LogoPng} />
     </Container>
   );
 };

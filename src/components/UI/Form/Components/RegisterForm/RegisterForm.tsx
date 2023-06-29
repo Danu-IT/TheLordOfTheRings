@@ -7,8 +7,8 @@ import Button from "../../../Button";
 import { UseFormRegister, FieldErrors } from "react-hook-form";
 
 interface RegisterFormProps {
-  register: UseFormRegister<formRegistrasion>;
-  errors: FieldErrors<formRegistrasion>;
+  register: UseFormRegister<FormRegistrasion>;
+  errors: FieldErrors<FormRegistrasion>;
   isValid: boolean;
 }
 
@@ -35,9 +35,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ register, errors, isValid }) => {
           }}
         />
         {errors.email && (
-          <MessageError
-            error={errors.email}
-            message={errors.email.message || "Error"}></MessageError>
+          <MessageError message={errors.email.message || "Error"} />
         )}
       </ContainerInput>
       <ContainerInput>
@@ -60,9 +58,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ register, errors, isValid }) => {
           }}
         />
         {errors.password && (
-          <MessageError
-            error={errors.password}
-            message={errors.password.message || "Error"}></MessageError>
+          <MessageError message={errors.password.message || "Error"} />
         )}
       </ContainerInput>
       <ContainerInput>
@@ -85,9 +81,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ register, errors, isValid }) => {
           }}
         />
         {errors.password && (
-          <MessageError
-            error={errors.password}
-            message={errors.password.message || "Error"}></MessageError>
+          <MessageError message={errors.password.message || "Error"} />
         )}
       </ContainerInput>
       <ButtonCustom

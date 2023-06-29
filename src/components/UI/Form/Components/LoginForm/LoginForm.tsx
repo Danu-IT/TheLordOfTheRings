@@ -7,8 +7,8 @@ import MessageError from "../../../../MessageError";
 import Button from "../../../Button";
 
 interface LoginFormProps {
-  register: UseFormRegister<formAuthorisation>;
-  errors: FieldErrors<formAuthorisation>;
+  register: UseFormRegister<FormAuthorisation>;
+  errors: FieldErrors<FormAuthorisation>;
   isValid: boolean;
 }
 
@@ -35,9 +35,7 @@ const LoginForm: FC<LoginFormProps> = ({ errors, isValid, register }) => {
           }}
         />
         {errors.email && (
-          <MessageError
-            error={errors.email}
-            message={errors.email.message || "Error"}></MessageError>
+          <MessageError message={errors.email.message || "Error"} />
         )}
       </ContainerInput>
       <ContainerInput>
@@ -60,9 +58,7 @@ const LoginForm: FC<LoginFormProps> = ({ errors, isValid, register }) => {
           }}
         />
         {errors.password && (
-          <MessageError
-            error={errors.password}
-            message={errors.password.message || "Error"}></MessageError>
+          <MessageError message={errors.password.message || "Error"} />
         )}
       </ContainerInput>
       <ButtonCustom

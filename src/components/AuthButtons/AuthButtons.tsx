@@ -5,13 +5,11 @@ import { styled } from "styled-components";
 
 const AuthButtons = () => {
   const navigate = useNavigate();
-  const handlerRegistration = () => {
-    navigate("/register");
-  };
+
   return (
     <Container>
       <Button
-        onClick={handlerRegistration}
+        onClick={() => navigate("/register")}
         color="white"
         bg="#e5c522">
         Регистрация

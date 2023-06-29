@@ -15,7 +15,7 @@ const User = () => {
       {isAuth ? (
         <UserFull>
           {user.photoURL ? (
-            <Image src={user.photoURL && user.photoURL}></Image>
+            <Image src={user.photoURL && user.photoURL} />
           ) : (
             <FaRegUserCircle size={30} />
           )}

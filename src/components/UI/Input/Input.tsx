@@ -24,10 +24,11 @@ const Input: FC<InputProps> = ({ placeholder, Icon, value, type, config }) => {
         id={type}
         type={visible ? type : "text"}
         placeholder={placeholder}
-        value={value}></InputTag>
+        value={value}
+      />
       {type === "password" && (
         <IconVisible onClick={() => setVisible((prev) => !prev)}>
-          {visible ? <HiEyeSlash></HiEyeSlash> : <IoEyeSharp></IoEyeSharp>}
+          {visible ? <HiEyeSlash /> : <IoEyeSharp />}
         </IconVisible>
       )}
     </Container>
