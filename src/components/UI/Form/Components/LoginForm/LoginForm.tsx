@@ -65,18 +65,21 @@ const LoginForm: FC<LoginFormProps> = ({ errors, isValid, register }) => {
             message={errors.password.message || "Error"}></MessageError>
         )}
       </ContainerInput>
-      <Button
+      <ButtonCustom
         bg="white"
         color="black"
         disabled={!isValid}>
         Авторизоваться
-      </Button>
+      </ButtonCustom>
     </>
   );
 };
 
 const ContainerInput = styled.div`
   position: relative;
+  width: 340px;
 `;
-
+const ButtonCustom = styled(Button)`
+  margin-left: 145px;
+`;
 export default LoginForm;

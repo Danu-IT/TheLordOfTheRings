@@ -15,15 +15,18 @@ const Form: FC<FormProps> = ({
 }) => {
   return (
     <Container onSubmit={handleSubmit(handlerSubmitCustom)}>
-      {children}
+      <ContainerForm>{children}</ContainerForm>
     </Container>
   );
 };
 
-const Container = styled.form`
+const Container = styled.div``;
+
+const ContainerForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 40px;
   margin-top: 100px;
 `;

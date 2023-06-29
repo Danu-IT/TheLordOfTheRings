@@ -2,6 +2,7 @@ import { useAppSelector } from "../../hooks/redux";
 
 import { styled } from "styled-components";
 import { FaRegUserCircle } from "react-icons/fa";
+import { sliceEmail } from "../../utils";
 
 const User = () => {
   const { isAuth, user } = useAppSelector((state) => ({
@@ -13,26 +14,34 @@ const User = () => {
     <Container>
       {isAuth ? (
         <UserFull>
-          {user.photoURL && <img src={user.photoURL && user.photoURL}></img>}
-          <div>{user.displayName}</div>
+          {user.photoURL ? (
+            <Image src={user.photoURL && user.photoURL}></Image>
+          ) : (
+            <FaRegUserCircle size={30} />
+          )}
+          <div>{user.email && sliceEmail(user.email)}</div>
         </UserFull>
       ) : (
-        <Guest>
+        <UserFull>
           <FaRegUserCircle size={30} />
           Войти
-        </Guest>
+        </UserFull>
       )}
     </Container>
   );
 };
 
-const Container = styled.div``;
-const UserFull = styled.div``;
-const Guest = styled.div`
+const Container = styled.div`
+  margin-right: 100px;
+`;
+const Image = styled.img`
+  border-radius: 50%;
+  width: 50px;
+`;
+const UserFull = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-right: 50px;
 `;
 
 export default User;

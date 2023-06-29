@@ -26,11 +26,11 @@ export const isAuthSlice = createSlice({
         changeAuth: (state, action: PayloadAction<boolean>) => {
             state.isAuth = action.payload;
         },
-        changeUid: (state, action: PayloadAction<User>) => {
+        changeUser: (state, action: PayloadAction<User>) => {
             state.user = action.payload;
         }
     }
 })
 
 export default isAuthSlice.reducer;
-export const { changeAuth, changeUid } = isAuthSlice.actions;
+export const { changeAuth, changeUser } = isAuthSlice.actions;

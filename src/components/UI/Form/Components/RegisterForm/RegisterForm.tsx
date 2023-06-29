@@ -90,18 +90,23 @@ const RegisterForm: FC<RegisterFormProps> = ({ register, errors, isValid }) => {
             message={errors.password.message || "Error"}></MessageError>
         )}
       </ContainerInput>
-      <Button
+      <ButtonCustom
         bg="white"
         color="black"
         disabled={!isValid}>
         Зарегистрироваться
-      </Button>
+      </ButtonCustom>
     </>
   );
 };
 
 const ContainerInput = styled.div`
   position: relative;
+  width: 340px;
+`;
+
+const ButtonCustom = styled(Button)`
+  margin-left: 45px;
 `;
 
 export default RegisterForm;
