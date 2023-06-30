@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 import { IconType } from "react-icons/lib";
 import { styled } from "styled-components";
 import { IoEyeSharp } from "react-icons/io5";

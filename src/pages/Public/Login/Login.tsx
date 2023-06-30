@@ -7,7 +7,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { useAppDispatch } from "../../../hooks/redux";
-import { changeAuth } from "../../../store/slices/authSlice";
+import { changeAuth } from "../../../store/slices/auth";
 import Form from "../../../components/UI/Form/Form";
 import LoginForm from "../../../components/UI/Form/Components/LoginForm/LoginForm";
 import { styled } from "styled-components";

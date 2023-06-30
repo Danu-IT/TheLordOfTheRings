@@ -2,7 +2,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
 import styled from "styled-components";
 import { useAppDispatch } from "../../../hooks/redux";
-import { changeUser } from "../../../store/slices/authSlice";
+import { changeUser } from "../../../store/slices/auth";
 import { auth } from "../../../firebase";
 
 const Home = () => {

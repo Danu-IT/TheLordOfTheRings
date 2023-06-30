@@ -7,7 +7,7 @@ import { Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App = () => {
-  const isAuth = useAppSelector((state) => state.authSlice.isAuth);
+  const isAuth = useAppSelector((state) => state.auth.isAuth);
   return (
     <BrowserRouter>
       <Suspense fallback={<div>Loading...</div>}>

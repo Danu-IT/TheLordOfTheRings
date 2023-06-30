@@ -1,19 +1,30 @@
 import Logo from "../Logo";
 import User from "../User";
-import { useAppSelector } from "../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import AuthButtons from "../AuthButtons/AuthButtons";
+import DropDown from "../UI/DropDown";
+import SignOut from "../UI/DropDown/components/SignOut";
+import { changeIsDropDownSignOut } from "../../store/slices/interfaceСhange";
 
 import { styled } from "styled-components";
 
 const Header = () => {
-  const isAuth = useAppSelector((state) => state.authSlice.isAuth);
+  const isAuth = useAppSelector((state) => state.auth.isAuth);
+  const isDropDownSignOut = useAppSelector(
+    (state) => state.interfaceСhange.isDropDownSignOut
+  );
+
+  const dispatch = useAppDispatch();
 
   return (
     <Container>
       <Logo />
       <Right>
         {isAuth ? <>Избранное</> : <AuthButtons />}
-        <User />
+        <User
+          onClick={() => dispatch(changeIsDropDownSignOut(!isDropDownSignOut))}
+        />
+        {isDropDownSignOut && <DropDown Content={SignOut} />}
       </Right>
     </Container>
   );
@@ -34,6 +45,7 @@ const Right = styled.div`
   display: flex;
   align-items: center;
   gap: 80px;
+  position: relative;
 `;
 
 export default Header;

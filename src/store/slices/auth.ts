@@ -19,7 +19,7 @@ const initialState: authState = {
     user: initialStateUser,
 }
 
-export const isAuthSlice = createSlice({
+export const Auth = createSlice({
     name: 'auth',
     initialState,
     reducers: {
@@ -32,5 +32,5 @@ export const isAuthSlice = createSlice({
     }
 })
 
-export default isAuthSlice.reducer;
-export const { changeAuth, changeUser } = isAuthSlice.actions;
+export default Auth.reducer;
+export const { changeAuth, changeUser } = Auth.actions;

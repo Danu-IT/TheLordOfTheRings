@@ -1,19 +1,24 @@
 import { useAppSelector } from "../../hooks/redux";
+import { sliceEmail } from "../../utils";
 
 import { styled } from "styled-components";
 import { FaRegUserCircle } from "react-icons/fa";
-import { sliceEmail } from "../../utils";
+import { FC } from "react";
 
-const User = () => {
+interface UserProps {
+  onClick: () => void;
+}
+
+const User: FC<UserProps> = ({ onClick }) => {
   const { isAuth, user } = useAppSelector((state) => ({
-    isAuth: state.authSlice.isAuth,
-    user: state.authSlice.user,
+    isAuth: state.auth.isAuth,
+    user: state.auth.user,
   }));
 
   return (
     <Container>
       {isAuth ? (
-        <UserFull>
+        <UserFull onClick={onClick}>
           {user.photoURL ? (
             <Image src={user.photoURL && user.photoURL} />
           ) : (

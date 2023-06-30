@@ -1,5 +1,7 @@
-import authSlice from './authSlice';
+import auth from './auth';
+import interfaceСhange from './interfaceСhange';
 
 export default {
-    authSlice,
+    auth,
+    interfaceСhange
 }
