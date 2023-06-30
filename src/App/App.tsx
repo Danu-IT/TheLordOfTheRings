@@ -18,14 +18,14 @@ const App = () => {
                 <Route
                   key={route.path}
                   path={route.path}
-                  element={<route.component></route.component>}
+                  element={<route.component />}
                 />
               ))
             : publicRoutes.map((route) => (
                 <Route
                   key={route.path}
                   path={route.path}
-                  element={<route.component></route.component>}
+                  element={<route.component />}
                 />
               ))}
           <Route
