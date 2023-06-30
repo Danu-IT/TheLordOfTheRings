@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Logo = () => {
   const navigate = useNavigate();
   const handleClick = () => navigate("/");
+
   return (
     <Container onClick={handleClick}>
       <div>Ring Info</div>

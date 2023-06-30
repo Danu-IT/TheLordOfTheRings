@@ -3,7 +3,7 @@ import { useAppSelector } from "../hooks/redux";
 import Home from "../pages/General/Home";
 import { privateRoutes, publicRoutes } from "../routes";
 
-import { Fragment, Suspense } from "react";
+import { Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App = () => {
@@ -15,20 +15,18 @@ const App = () => {
         <Routes>
           {isAuth
             ? privateRoutes.map((route) => (
-                <Fragment key={route.path}>
-                  <Route
-                    path={route.path}
-                    element={<route.component></route.component>}
-                  />
-                </Fragment>
+                <Route
+                  key={route.path}
+                  path={route.path}
+                  element={<route.component></route.component>}
+                />
               ))
             : publicRoutes.map((route) => (
-                <Fragment key={route.path}>
-                  <Route
-                    path={route.path}
-                    element={<route.component></route.component>}
-                  />
-                </Fragment>
+                <Route
+                  key={route.path}
+                  path={route.path}
+                  element={<route.component></route.component>}
+                />
               ))}
           <Route
             path="*"

@@ -66,9 +66,10 @@ const Login = () => {
         or
         <FcGoogle
           onClick={handlerRegisterGoogle}
-          size={20}></FcGoogle>
-        <BsFacebook size={20}></BsFacebook>
-        <AiFillGithub size={20}></AiFillGithub>
+          size={20}
+        />
+        <BsFacebook size={20} />
+        <AiFillGithub size={20} />
       </Sign>
     </Form>
   );

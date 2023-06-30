@@ -12,6 +12,7 @@ const Home = () => {
       if (user) dispatch(changeUser(user));
     });
   }, []);
+
   return <Container></Container>;
 };
 

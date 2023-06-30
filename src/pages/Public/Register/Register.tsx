@@ -41,7 +41,8 @@ const Register = () => {
       <RegisterForm
         register={register}
         errors={errors}
-        isValid={isValid}></RegisterForm>
+        isValid={isValid}
+      />
     </Form>
   );
 };

@@ -15,8 +15,7 @@ const Form: FC<FormProps> = ({
 }) => {
   return (
     <Container onSubmit={handleSubmit(handlerSubmitCustom)}>
-      <ContainerForm />
-      {children}
+      <ContainerForm>{children}</ContainerForm>
     </Container>
   );
 };
