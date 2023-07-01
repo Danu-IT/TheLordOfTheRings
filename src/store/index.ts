@@ -10,6 +10,7 @@ import {
 import storage from 'redux-persist/lib/storage'
 
 import slices from './slices';
+import { ringsAPI } from "../services/RingsService";
 
 const persistConfig = {
     key: 'root',
@@ -24,14 +25,14 @@ const persistedReducer = persistReducer(persistConfig, rootReducer)
 export const setupStore = () => {
     return configureStore({
         reducer: persistedReducer,
-        middleware: (getDefaultMiddleware) =>
-            getDefaultMiddleware({
-                serializableCheck: {
-                    ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-                },
-            }),
+        middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+            }
+        }).concat(ringsAPI.middleware),
     })
 }
+
 
 export type RootState = ReturnType<typeof rootReducer>;
 export type AppStore = ReturnType<typeof setupStore>;
