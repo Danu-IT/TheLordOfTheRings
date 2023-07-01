@@ -61,12 +61,9 @@ const Block = styled.div`
   }
 `;
 const Info = styled.div``;
-const Race = styled.div``;
 
 const ButtonCard = styled.div`
   align-self: center;
 `;
-const Gender = styled.div``;
-const Hair = styled.div``;
 
 export default Card;
