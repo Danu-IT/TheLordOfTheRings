@@ -1,14 +1,16 @@
-import { FC, MouseEventHandler } from "react";
+import { FC } from "react";
 import { styled } from "styled-components";
 import Button from "../UI/Button/Button";
 import Like from "../Like";
 
 interface CardProps {
   item: CharacterCustomElement;
-  handleCard: (id: string) => void;
+  onClick: (id: string) => void;
 }
 
-const Card: FC<CardProps> = ({ item, handleCard }) => {
+const Card: FC<CardProps> = ({ item, onClick }) => {
+  const isExists = (item: string) => (item ? item : "Неизвестно");
+
   return (
     <Container>
       <Like />
@@ -20,15 +22,15 @@ const Card: FC<CardProps> = ({ item, handleCard }) => {
           Раса: <span>{item.race}</span>
         </Block>
         <Block>
-          Пол: <span>{item.gender ? item.gender : "Неизвестно"}</span>
+          Пол: <span>{isExists(item.gender)}</span>
         </Block>
         <Block>
-          Рождение: <span>{item.gender ? item.birth : "Неизвестно"}</span>
+          Рождение: <span>{isExists(item.birth)}</span>
         </Block>
       </Info>
       <ButtonCard>
         <Button
-          onClick={() => handleCard(item.id)}
+          onClick={() => onClick(item.id)}
           bg="white"
           color="black">
           Открыть

@@ -1,7 +1,7 @@
 import { AiOutlineHeart } from "react-icons/ai";
 import { styled } from "styled-components";
 
-const Like = ({}) => {
+const Like = () => {
   return (
     <Container>
       <AiOutlineHeart size={30} />

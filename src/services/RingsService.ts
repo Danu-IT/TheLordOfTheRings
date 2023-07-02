@@ -20,6 +20,7 @@ export const ringsAPI = createApi({
             }),
             transformResponse: (response: CharacterApi) => {
                 const newData = characterConverter(response);
+              
                 return {
                     docs: newData,
                     limit: response.limit,

@@ -6,7 +6,6 @@ import { useAppDispatch } from "../../../hooks/redux";
 import { changeUser } from "../../../store/slices/auth";
 import { auth } from "../../../firebase";
 import { ringsAPI } from "../../../services/RingsService";
-import List from "../../../components/List";
 import Card from "../../../components/Card/Card";
 import { useNavigate } from "react-router-dom";
 
@@ -25,17 +24,14 @@ const Home = () => {
   return (
     <Container>
       <Cards>
-        {data?.docs && (
-          <List
-            items={data.docs}
-            renderItem={(item, i) => (
-              <Card
-                handleCard={(id: string) => navigate(`/${id}`)}
-                key={item.id}
-                item={item}
-              />
-            )}></List>
-        )}
+        {data?.docs &&
+          data.docs.map((el) => (
+            <Card
+              onClick={(id: string) => navigate(`/${id}`)}
+              key={el.id}
+              item={el}
+            />
+          ))}
       </Cards>
     </Container>
   );
