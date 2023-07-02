@@ -1,14 +1,14 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { useAppDispatch } from "../../../hooks/redux";
 import { changeUser } from "../../../store/slices/auth";
 import { auth } from "../../../firebase";
 import { ringsAPI } from "../../../services/RingsService";
-import List from "../../../components/List";
 import Card from "../../../components/Card/Card";
-import { useNavigate, useSearchParams } from "react-router-dom";
 import Pagination from "../../../components/Pagination";
 
 const Home = () => {
@@ -35,18 +35,15 @@ const Home = () => {
   return (
     <Container>
       <Cards>
-        {data?.docs && (
-          <List
-            items={data.docs}
-            renderItem={(item, i) => (
-              <Card
-                handleCard={(id: string) => navigate(`/${id}`)}
-                key={item.id}
-                item={item}
-              />
-            )}
-          />
-        )}
+      {data?.docs &&
+          data.docs.map((el) => (
+            <Card
+              onClick={(id: string) => navigate(`/${id}`)}
+              key={el.id}
+              item={el}
+            />
+         ))
+      }
       </Cards>
       <Pagination
         setPageState={setPageState}
