@@ -1,13 +1,13 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 import { useAppDispatch } from "../../../hooks/redux";
 import { changeUser } from "../../../store/slices/auth";
 import { auth } from "../../../firebase";
 import { ringsAPI } from "../../../services/RingsService";
 import Card from "../../../components/Card/Card";
-import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const dispatch = useAppDispatch();

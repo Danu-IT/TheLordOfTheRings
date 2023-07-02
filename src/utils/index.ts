@@ -2,7 +2,7 @@ export const sliceEmail = (email: string | null) => {
     return !email ? false : email.charAt(0).toUpperCase() + email.split('@')[0].slice(1) 
 }
 
-export const characterConverter = (response: CharacterApi) => {
+export const characterConverter = (response: CharacterApi): CharacterCustomElement[] => {
     return response.docs.map((el: CharacterApiElement) => ({
         id: el._id,
         birth: el.birth,
@@ -19,7 +19,7 @@ export const characterConverter = (response: CharacterApi) => {
 }
 
 
-export const quoteConverter = (response: QuoteApi) => {
+export const quoteConverter = (response: QuoteApi): QuoteCustomElement[] => {
     return response.docs.map((el: QuoteApiElement) => ({
         id: el._id,
         dialog: el.dialog,
