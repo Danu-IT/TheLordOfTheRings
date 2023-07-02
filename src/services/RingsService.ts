@@ -17,7 +17,7 @@ export const ringsAPI = createApi({
                 url: "/character",
                 params: {page: 1, limit: 100}
             }),
-            transformResponse: (response: any) => {
+            transformResponse: (response: CharacterApi) => {
                 const newData = response.docs.map((el: CharacterApiElement) => ({
                     id: el._id,
                     birth: el.birth,
