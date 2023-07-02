@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import { FC } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
-import List from "../List";
+
 import PaginationItem from "./components/PaginationItem";
 
 interface PaginationProps {
@@ -11,27 +11,24 @@ interface PaginationProps {
 }
 
 const Pagination: FC<PaginationProps> = ({ info, pageState, setPageState }) => {
-  const newPage = (item: number) => {
-    setPageState(item);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
     <Container>
-      <AiOutlineLeft />
-      {info?.page && (
-        <List
-          renderItem={(el, i) => (
+      <Arrow onClick={() => setPageState(pageState - 1)}>
+        <AiOutlineLeft size={25} />
+      </Arrow>
+      <ContainerPages>
+        {info?.page &&
+          Array.from(Array(info.pages).keys()).map((el) => (
             <PaginationItem
-              onClick={() => newPage(el + 1)}
+              onClick={() => setPageState(el + 1)}
               current={el + 1 == pageState ? true : false}>
               {el + 1}
             </PaginationItem>
-          )}
-          items={Array.from(Array(info?.pages).keys())}
-        />
-      )}
-      <AiOutlineRight />
+          ))}
+      </ContainerPages>
+      <Arrow onClick={() => setPageState(pageState + 1)}>
+        <AiOutlineRight size={22} />
+      </Arrow>
     </Container>
   );
 };
@@ -39,8 +36,21 @@ const Pagination: FC<PaginationProps> = ({ info, pageState, setPageState }) => {
 const Container = styled.div`
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 24px;
   justify-content: center;
+`;
+
+const ContainerPages = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+`;
+const Arrow = styled.div`
+  cursor: pointer;
+  &:hover {
+    color: yellow;
+  }
 `;
 
 export default Pagination;

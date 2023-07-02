@@ -1,7 +1,6 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { useAppDispatch } from "../../../hooks/redux";
@@ -30,25 +29,26 @@ const Home = () => {
 
   useEffect(() => {
     navigate(`?page=${pageState}`);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [pageState, setPageState]);
 
   return (
     <Container>
       <Cards>
-      {data?.docs &&
+        {data?.docs &&
           data.docs.map((el) => (
             <Card
               onClick={(id: string) => navigate(`/${id}`)}
               key={el.id}
               item={el}
             />
-         ))
-      }
+          ))}
       </Cards>
       <Pagination
         setPageState={setPageState}
         pageState={pageState}
-        info={data}></Pagination>
+        info={data}
+      />
     </Container>
   );
 };
