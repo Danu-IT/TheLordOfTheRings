@@ -36,11 +36,11 @@ const Home = () => {
     <Container>
       <Cards>
         {data?.docs &&
-          data.docs.map((item) => (
+          data.docs.map((el) => (
             <Card
-              handleCard={(id: string) => navigate(`/${id}`)}
-              key={item.id}
-              item={item}
+              onClick={(id: string) => navigate(`/${id}`)}
+              key={el.id}
+              item={el}
             />
           ))}
       </Cards>

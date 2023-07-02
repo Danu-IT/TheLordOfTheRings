@@ -1,4 +1,4 @@
-import { FC, useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { styled } from "styled-components";
 import { ringsAPI } from "../../../../../services/RingsService";
 
@@ -6,7 +6,7 @@ interface QuoteProps {
   item: QuoteCustomElement;
 }
 
-const Quote: FC<QuoteProps> = ({ item }) => {
+const Quote = ({ item }: QuoteProps) => {
   const { data } = ringsAPI.useGetMovieIdQuery(item.movie);
 
   const movieName = useMemo(() => data?.docs[0].name, [data]);

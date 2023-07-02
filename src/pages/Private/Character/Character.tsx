@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+
 import { ringsAPI } from "../../../services/RingsService";
 import Back from "../../../components/Back";
 import { styled } from "styled-components";
@@ -11,15 +12,15 @@ const Character = () => {
   const { data } = ringsAPI.useGetCharacterQuery(idCharacter);
   const { data: dataQuote } = ringsAPI.useGetCharacterQuotQuery(idCharacter);
 
-  const character = useMemo(() => data?.docs[0], [data]);
-  const characterQuote = useMemo(() => dataQuote?.docs.slice(0, 30), [data]);
+  const character = data?.docs[0];
+  const characterQuote = dataQuote?.docs.slice(0, 30);
 
   return (
     <Container>
       <Back />
       <Content>
         <Left>
-          <Name>{character?.name}</Name>
+          {character?.name && <Name>{character.name}</Name>}
           {characterQuote && <Quotes list={characterQuote} />}
         </Left>
         <Right>
