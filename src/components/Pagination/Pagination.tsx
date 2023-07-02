@@ -35,7 +35,7 @@ const Pagination: FC<PaginationProps> = ({ info, pageState, setPageState }) => {
 const Container = styled.div`
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 25px;
   justify-content: center;
 `;
 
