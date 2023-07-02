@@ -26,7 +26,7 @@ interface PaginationItemStyleProps {
 
 const Container = styled.div<PaginationItemStyleProps>`
   border-radius: 50%;
-  padding: 2px;
+  padding: 4px;
   border: ${({ current }) =>
     current ? "1px solid yellow" : "1px solid white"};
   width: 20px;

@@ -1,14 +1,13 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { useAppDispatch } from "../../../hooks/redux";
 import { changeUser } from "../../../store/slices/auth";
 import { auth } from "../../../firebase";
 import { ringsAPI } from "../../../services/RingsService";
-import List from "../../../components/List";
 import Card from "../../../components/Card/Card";
-import { useNavigate, useSearchParams } from "react-router-dom";
 import Pagination from "../../../components/Pagination";
 
 const Home = () => {
@@ -30,28 +29,27 @@ const Home = () => {
 
   useEffect(() => {
     navigate(`?page=${pageState}`);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [pageState, setPageState]);
 
   return (
     <Container>
       <Cards>
-        {data?.docs && (
-          <List
-            items={data.docs}
-            renderItem={(item, i) => (
-              <Card
-                handleCard={(id: string) => navigate(`/${id}`)}
-                key={item.id}
-                item={item}
-              />
-            )}
-          />
-        )}
+        {data?.docs &&
+          data.docs.map((item) => (
+            <Card
+              handleCard={(id: string) => navigate(`/${id}`)}
+              key={item.id}
+              item={item}
+            />
+          ))}
       </Cards>
-      <Pagination
-        setPageState={setPageState}
-        pageState={pageState}
-        info={data}></Pagination>
+      {data?.pages && (
+        <Pagination
+          setPageState={setPageState}
+          pageState={pageState}
+          info={data}></Pagination>
+      )}
     </Container>
   );
 };

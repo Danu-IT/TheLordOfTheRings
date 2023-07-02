@@ -1,8 +1,7 @@
 import { FC } from "react";
-
-import List from "../../../../../components/List";
-import Quote from "../Quote/Quote";
 import { styled } from "styled-components";
+
+import Quote from "../Quote/Quote";
 
 interface QuotesProps {
   list: QuoteCustomElement[];
@@ -11,10 +10,9 @@ interface QuotesProps {
 const Quotes: FC<QuotesProps> = ({ list }) => {
   return (
     <Container>
-      <List
-        items={list}
-        renderItem={(el, i) => <Quote item={el}></Quote>}
-      />
+      {list.map((el) => (
+        <Quote item={el}></Quote>
+      ))}
     </Container>
   );
 };
