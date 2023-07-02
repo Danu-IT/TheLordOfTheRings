@@ -1,4 +1,5 @@
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+
 import { ringsAPI } from "../../../services/RingsService";
 import Back from "../../../components/Back";
 import { styled } from "styled-components";
