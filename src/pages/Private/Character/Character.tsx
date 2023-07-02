@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ringsAPI } from "../../../services/RingsService";
 import Back from "../../../components/Back";
 import { styled } from "styled-components";
@@ -6,7 +6,7 @@ import { useMemo } from "react";
 import Quotes from "./components/Quotes";
 
 const Character = () => {
-  const idCharacter = useLocation().pathname.split("/")[1];
+  const idCharacter = useParams().id || "";
 
   const { data } = ringsAPI.useGetCharacterQuery(idCharacter);
   const { data: dataQuote } = ringsAPI.useGetCharacterQuotQuery(idCharacter);

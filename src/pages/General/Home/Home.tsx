@@ -1,5 +1,5 @@
 import { onAuthStateChanged } from "firebase/auth";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { useAppDispatch } from "../../../hooks/redux";
@@ -8,19 +8,29 @@ import { auth } from "../../../firebase";
 import { ringsAPI } from "../../../services/RingsService";
 import List from "../../../components/List";
 import Card from "../../../components/Card/Card";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import Pagination from "../../../components/Pagination";
 
 const Home = () => {
+  const [searchParams] = useSearchParams();
+  const pageQuery = searchParams.get("page") || "1";
+
+  const [pageState, setPageState] = useState(Number(pageQuery));
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { data } = ringsAPI.useGetCharactersQuery(null);
+  const { data } = ringsAPI.useGetCharactersQuery({ page: pageState });
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) dispatch(changeUser(user));
     });
   }, []);
+
+  useEffect(() => {
+    navigate(`?page=${pageState}`);
+  }, [pageState, setPageState]);
 
   return (
     <Container>
@@ -34,9 +44,14 @@ const Home = () => {
                 key={item.id}
                 item={item}
               />
-            )}></List>
+            )}
+          />
         )}
       </Cards>
+      <Pagination
+        setPageState={setPageState}
+        pageState={pageState}
+        info={data}></Pagination>
     </Container>
   );
 };
@@ -44,6 +59,9 @@ const Home = () => {
 const Container = styled.div`
   max-width: 1300px;
   margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 const Cards = styled.div`
   display: flex;
