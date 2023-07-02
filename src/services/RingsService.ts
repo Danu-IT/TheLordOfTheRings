@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
+import { characterConverter, quoteConverter } from "../utils";
 
 export const ringsAPI = createApi({
     reducerPath: "ringsAPI",
@@ -18,19 +19,8 @@ export const ringsAPI = createApi({
                 params: {page: 1, limit: 100}
             }),
             transformResponse: (response: CharacterApi) => {
-                const newData = response.docs.map((el: CharacterApiElement) => ({
-                    id: el._id,
-                    birth: el.birth,
-                    death: el.death,
-                    gender: el.gender,
-                    hair: el.hair,
-                    name: el.name,
-                    race: el.race,
-                    realm: el.realm,
-                    spouse: el.spouse,
-                    wikiUrl: el.wikiUrl,
-                    like: false,
-                }));
+                const newData = characterConverter(response);
+              
                 return {
                     docs: newData,
                     limit: response.limit,
@@ -38,7 +28,40 @@ export const ringsAPI = createApi({
                     pages: response.pages
                 }
             },
-            providesTags: ["character"]
-        })
+            providesTags: (result) => ["character"],
+        }),
+        getCharacter: build.query<CharacterCustom, string>({
+            query: (id: string) => ({
+                url: `/character/${id}`
+            }),
+            transformResponse: (response: CharacterApi) => {
+                const newData = characterConverter(response);
+                return {
+                    docs: newData,
+                    limit: response.limit,
+                    page: response.page,
+                    pages: response.pages
+                }
+            },
+            providesTags: (result) => ["character"],
+        }),
+        getCharacterQuot: build.query<QuoteCustom, string>({
+            query: (id: string) => ({
+                url: `/character/${id}/quote`
+            }),
+            transformResponse: (response: QuoteApi) => {
+                const newData = quoteConverter(response);
+                return {
+                    docs: newData,
+                };
+            },
+            providesTags: (result) => ["character"],
+        }),
+        getMovieId: build.query<MovieApi, string>({
+            query: (id: string) => ({
+                url: `/movie/${id}`
+            }),
+            providesTags: (result) => ["character"],
+        }) 
     })
 })

@@ -37,7 +37,10 @@ const Home = () => {
   );
 };
 
-const Container = styled.div``;
+const Container = styled.div`
+  max-width: 1300px;
+  margin: 10px auto;
+`;
 const Cards = styled.div`
   display: flex;
   justify-content: center;
