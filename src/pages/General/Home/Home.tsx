@@ -9,17 +9,23 @@ import { auth } from "../../../firebase";
 import { ringsAPI } from "../../../services/RingsService";
 import Card from "../../../components/Card/Card";
 import Pagination from "../../../components/Pagination";
+import Search from "../../../components/Search/Search";
 
 const Home = () => {
   const [searchParams] = useSearchParams();
   const pageQuery = searchParams.get("page") || "1";
+  const searchQuery = searchParams.get("search") || "";
 
   const [pageState, setPageState] = useState(Number(pageQuery));
+  const [search, serSeacrh] = useState<string>(searchQuery);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { data } = ringsAPI.useGetCharactersQuery({ page: pageState });
+  const { data } = ringsAPI.useGetCharactersQuery({
+    page: pageState,
+    name: search,
+  });
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -28,27 +34,35 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    navigate(`?page=${pageState}`);
+    navigate(`?page=${pageState}&search=${search}`);
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [pageState, setPageState]);
+  }, [pageState, setPageState, search, serSeacrh]);
 
   return (
     <Container>
+      <Search
+        searchValue={search}
+        onClick={(value: string) => serSeacrh(value)}></Search>
       <Cards>
-        {data?.docs &&
+        {data?.docs.length ? (
           data.docs.map((el) => (
             <Card
               onClick={(id: string) => navigate(`/${id}`)}
               key={el.id}
               item={el}
             />
-          ))}
+          ))
+        ) : (
+          <Title>По вашему запросу ничего не найдено</Title>
+        )}
       </Cards>
-      <Pagination
-        setPageState={setPageState}
-        pageState={pageState}
-        info={data}
-      />
+      {data?.docs.length !== 0 && (
+        <Pagination
+          setPageState={setPageState}
+          pageState={pageState}
+          info={data}
+        />
+      )}
     </Container>
   );
 };
@@ -60,6 +74,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+
 const Cards = styled.div`
   display: flex;
   justify-content: center;
@@ -68,5 +83,7 @@ const Cards = styled.div`
   gap: 20px;
   margin: 40px 30px;
 `;
+
+const Title = styled.h2``;
 
 export default Home;

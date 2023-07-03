@@ -35,12 +35,14 @@ interface ButtonStyleProps {
 
 const Container = styled.button<ButtonStyleProps>`
   color: ${({ color }) => color};
+  position: relative;
   background-color: ${({ bg, disabled }) => (!disabled ? bg : "gray")};
   padding: 10px 20px;
   border-radius: 15px;
   cursor: pointer;
   border: none;
   outline: none;
+  z-index: 5;
   &:hover {
     opacity: ${({ disabled }) => (!disabled ? "0.8" : "1.0")};
   }

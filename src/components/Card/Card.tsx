@@ -9,17 +9,18 @@ interface CardProps {
 }
 
 const Card: FC<CardProps> = ({ item, onClick }) => {
-  const isExists = (item: string) => (item ? item : "Неизвестно");
+  const isExists = (item: string) =>
+    item && item !== "NaN" ? item : "Неизвестно";
 
   return (
     <Container>
       <Like />
       <Info>
         <Block>
-          Имя: <span>{item.name}</span>
+          Имя: <span>{isExists(item.name)}</span>
         </Block>
         <Block>
-          Раса: <span>{item.race}</span>
+          Раса: <span>{isExists(item.race)}</span>
         </Block>
         <Block>
           Пол: <span>{isExists(item.gender)}</span>
@@ -45,7 +46,7 @@ const Container = styled.div`
   border-radius: 10px;
   border: 1px solid white;
   width: 250px;
-  padding: 5px;
+  padding: 25px 5px 5px 5px;
   cursor: pointer;
   display: flex;
   flex-direction: column;

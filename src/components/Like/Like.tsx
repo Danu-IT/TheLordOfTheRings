@@ -12,6 +12,7 @@ const Like = () => {
 const Container = styled.div`
   position: absolute;
   right: 5px;
+  top: 2px;
 `;
 
 export default Like;
