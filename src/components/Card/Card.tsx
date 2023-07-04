@@ -14,7 +14,7 @@ const Card: FC<CardProps> = ({ item, onClick }) => {
 
   return (
     <Container>
-      <Like />
+      <Like isLike={item.like} />
       <Info>
         <Block>
           Имя: <span>{stringExists(item.name)}</span>

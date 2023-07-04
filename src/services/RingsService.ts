@@ -13,10 +13,10 @@ export const ringsAPI = createApi({
     }),
     tagTypes: ["character"],
     endpoints: (build) => ({
-        getCharacters: build.query<CharacterCustom, {page: number, name: string, sort: string}>({
-            query: ({page, name, sort}) => ({
+        getCharacters: build.query<CharacterCustom, {page: number, name: string, sort: string, race: string}>({
+            query: ({page, name, sort, race}) => ({
                 url: "/character",
-                params: {page: page, limit: 100, name: `/${name}/i`, sort: `name:${sort}`}
+                params: {page: page, limit: 100, name: `/${name}/i`, sort: `name:${sort}`, race: race}
             }),
             transformResponse: (response: CharacterApi) => {
                 const newData = characterConverter(response);
