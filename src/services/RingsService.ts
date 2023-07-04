@@ -13,10 +13,10 @@ export const ringsAPI = createApi({
     }),
     tagTypes: ["character"],
     endpoints: (build) => ({
-        getCharacters: build.query<CharacterCustom, {page: number, name: string}>({
-            query: ({page, name}) => ({
+        getCharacters: build.query<CharacterCustom, {page: number, name: string, sort: string}>({
+            query: ({page, name, sort}) => ({
                 url: "/character",
-                params: {page: page, limit: 100, name: `/${name}/i`}
+                params: {page: page, limit: 100, name: `/${name}/i`, sort: `name:${sort}`}
             }),
             transformResponse: (response: CharacterApi) => {
                 const newData = characterConverter(response);
@@ -63,8 +63,8 @@ export const ringsAPI = createApi({
             }),
             providesTags: (result) => ["character"],
         }),
-        getCharacterSpecific: build.query<CharacterCustom, {}>({
-            query: ({}) => ({
+        getCharacterSpecific: build.query<CharacterCustom, void>({
+            query: () => ({
                 url: "/character",
                 params: {name: `Frodo Baggins,Aragorn II Elessar,Gandalf,Legolas,Gimli,Sauron,Faramir`}
             }),

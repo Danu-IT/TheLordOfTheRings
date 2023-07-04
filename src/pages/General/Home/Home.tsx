@@ -1,48 +1,52 @@
-import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-import { useAppDispatch } from "../../../hooks/redux";
-import { changeUser } from "../../../store/slices/auth";
-import { auth } from "../../../firebase";
 import { ringsAPI } from "../../../services/RingsService";
 import Card from "../../../components/Card/Card";
 import Pagination from "../../../components/Pagination";
 import Search from "../../../components/Search/Search";
+import Sort from "../../../components/Sort/Sort";
 
 const Home = () => {
   const [searchParams] = useSearchParams();
   const pageQuery = searchParams.get("page") || "1";
   const searchQuery = searchParams.get("search") || "";
+  const sortQuery = searchParams.get("sort") || "";
 
   const [pageState, setPageState] = useState(Number(pageQuery));
-  const [search, serSeacrh] = useState<string>(searchQuery);
+  const [search, setSeacrh] = useState<string>(searchQuery);
+  const [sort, setSort] = useState(sortQuery);
 
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const { data } = ringsAPI.useGetCharactersQuery({
     page: pageState,
     name: search,
+    sort: sort,
   });
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) dispatch(changeUser(user));
-    });
-  }, []);
+    navigate(`?page=${pageState}&search=${search}&sort=${sort}`);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [pageState, setPageState, search, setSeacrh, sort, setSort]);
 
   useEffect(() => {
-    navigate(`?page=${pageState}&search=${search}`);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [pageState, setPageState, search, serSeacrh]);
+    setSort("asc");
+  }, []);
 
   return (
     <Container>
-      <Search
-        searchValue={search}
-        onClick={(value: string) => serSeacrh(value)}></Search>
+      <UserControl>
+        <Search
+          searchValue={search}
+          onClick={(value: string) => setSeacrh(value)}
+        />
+        <Sort
+          sort={sort}
+          setSort={setSort}
+        />
+      </UserControl>
       <Cards>
         {data?.docs.length ? (
           data.docs.map((el) => (
@@ -72,7 +76,6 @@ const Container = styled.div`
   margin: 10px auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
 `;
 
 const Cards = styled.div`
@@ -84,6 +87,10 @@ const Cards = styled.div`
   margin: 40px 30px;
 `;
 
+const UserControl = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
 const Title = styled.h2``;
 
 export default Home;

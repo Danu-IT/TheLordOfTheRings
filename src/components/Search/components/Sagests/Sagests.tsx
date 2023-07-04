@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const Sagests = () => {
   const navigate = useNavigate();
-  const { data: sagests } = ringsAPI.useGetCharacterSpecificQuery({});
+  const { data: sagests } = ringsAPI.useGetCharacterSpecificQuery();
 
   return (
     <Container>

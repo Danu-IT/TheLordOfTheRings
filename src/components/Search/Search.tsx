@@ -1,8 +1,6 @@
-import { ChangeEvent, useState, useEffect } from "react";
+import { ChangeEvent, useState } from "react";
 import { styled } from "styled-components";
 import Button from "../UI/Button";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { changeIsFocusSearch } from "../../store/slices/interfaceСhange";
 import Sagests from "./components/Sagests/Sagests";
 
 interface SearchProps {
@@ -12,17 +10,14 @@ interface SearchProps {
 
 const Search = ({ onClick, searchValue }: SearchProps) => {
   const [value, setValue] = useState(searchValue);
-  const { isFocusSearch } = useAppSelector((state) => state.interfaceСhange);
-  const dispatch = useAppDispatch();
+  const [isFocusSearch, setIsFocuseSearch] = useState(false);
 
   return (
     <Container view={isFocusSearch}>
       <Input
         view={isFocusSearch}
-        onFocus={() => dispatch(changeIsFocusSearch(true))}
-        onBlur={() =>
-          setTimeout(() => dispatch(changeIsFocusSearch(false)), 300)
-        }
+        onFocus={() => setIsFocuseSearch(true)}
+        onBlur={() => setTimeout(() => setIsFocuseSearch(false), 300)}
         value={value}
         onChange={(e: ChangeEvent<HTMLInputElement>) =>
           setValue(e.target.value)
