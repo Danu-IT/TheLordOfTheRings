@@ -7,7 +7,7 @@ interface authState {
 const initialState: authState = {
     isDropDownSignOut: false,
 }
-
+ 
 export const interfaceСhange = createSlice({
     name: 'auth',
     initialState,

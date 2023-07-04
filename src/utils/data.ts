@@ -1,0 +1,1 @@
+export const arrayOfSorts = [{ result: "asc", value: "По возрастанию" }, { result: "desc", value: "По убыванию" }]

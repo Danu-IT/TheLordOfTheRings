@@ -5,5 +5,6 @@ import interfaceСhange from './interfaceСhange';
 export default {
     auth,
     interfaceСhange,
+    
     [ringsAPI.reducerPath]: ringsAPI.reducer
 }
