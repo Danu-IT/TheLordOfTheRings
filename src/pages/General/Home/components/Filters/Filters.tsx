@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import Filter from "../../../../../components/Filter";
 import { useAppDispatch } from "../../../../../hooks/redux";
-import { changeFilterRace } from "../../../../../store/slices/dataFilter";
+import { changeFilterRace } from "../../../../../store/slices/speciesData";
 import { arrayRace } from "../../../../../utils/data";
 import { useState, useEffect } from "react";
 

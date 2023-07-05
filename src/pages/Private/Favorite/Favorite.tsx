@@ -7,17 +7,19 @@ import { useNavigate } from "react-router-dom";
 const Favorite = () => {
   const navigate = useNavigate();
 
-  const { favorites } = useAppSelector((state) => state.dataFilter);
+  const { favorites } = useAppSelector((state) => state.speciesData);
+
   return (
     <Container>
       <Title>Избранное</Title>
       <Cards>
-        {favorites.map((el) => (
-          <Card
-            item={el}
-            onClick={(id: string) => navigate(`/${id}`)}
-            key={el.id}></Card>
-        ))}
+        {favorites &&
+          favorites.map((el) => (
+            <Card
+              item={el}
+              onClick={(id: string) => navigate(`/${id}`)}
+              key={el.id}></Card>
+          ))}
       </Cards>
     </Container>
   );

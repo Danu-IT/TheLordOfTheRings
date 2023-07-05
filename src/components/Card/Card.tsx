@@ -3,7 +3,8 @@ import { styled } from "styled-components";
 import Button from "../UI/Button/Button";
 import Like from "../Like";
 import { useAppDispatch } from "../../hooks/redux";
-import { toggleLike } from "../../store/slices/dataFilter";
+import { toggleLike } from "../../store/slices/speciesData";
+import { stringExists } from "../../utils";
 
 interface CardProps {
   item: CharacterCustomElement;
@@ -11,9 +12,6 @@ interface CardProps {
 }
 
 const Card: FC<CardProps> = ({ item, onClick }) => {
-  const stringExists = (item: string) =>
-    item && item !== "NaN" ? item : "Неизвестно";
-
   const dispatch = useAppDispatch();
 
   return (

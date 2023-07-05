@@ -1,4 +1,4 @@
-import { collection, doc, getDocs, orderBy, query, setDoc } from "firebase/firestore"
+import { collection, doc, getDocs, query, setDoc, where } from "firebase/firestore"
 import { db } from "."
 
 export const saveItem = async (data: CharacterCustomElement[], id: string, directory: string) => {
@@ -6,12 +6,8 @@ export const saveItem = async (data: CharacterCustomElement[], id: string, direc
 }
 
 export const getAllCardItems = async (collectionName: string, user: string) => {
-    let returnDocs = {};
     const items = await getDocs(query(collection(db, collectionName)));
-    items.forEach(item => {
-        if(user === item.id){
-            returnDocs = item.data();
-        }
-    })
-    return returnDocs;
+    const item = items.docs.find(el => el.id === user)
+    const data = item && item.data()
+    return data;
 }

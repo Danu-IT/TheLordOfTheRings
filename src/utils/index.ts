@@ -27,3 +27,5 @@ export const quoteConverter = (response: QuoteApi): QuoteCustomElement[] => {
         character: el.character
     }))
 }
+
+export const stringExists = (item: string) => item && item !== "NaN" ? item : "Неизвестно";

@@ -6,24 +6,43 @@ import { privateRoutes, publicRoutes } from "../routes";
 
 import { Suspense, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { changeUser } from "../store/slices/auth";
+import { changeAuth, changeUser } from "../store/slices/auth";
 import { auth } from "../firebase";
 import { getAllCardItems } from "../firebase/change";
-import { changeFavorite } from "../store/slices/dataFilter";
+import { changeFavorite } from "../store/slices/speciesData";
+import { subscribe, unsubscribe } from "../events";
+import { changeIsDropDownSignOut } from "../store/slices/interfaceСhange";
 
 const App = () => {
   const { isAuth, user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
 
+  const zeroingOut = () => {
+    dispatch(changeFavorite([]));
+    dispatch(changeAuth(false));
+    dispatch(changeIsDropDownSignOut(false));
+  };
+
+  useEffect(() => {
+    subscribe("zeroingout", zeroingOut);
+
+    return () => {
+      unsubscribe("zeroingout", zeroingOut);
+    };
+  }, []);
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) dispatch(changeUser(user));
     });
+  }, [user]);
+
+  useEffect(() => {
     user.uid &&
       getAllCardItems("favorites", user.uid).then((favorite: any) => {
-        dispatch(changeFavorite(favorite.docs));
+        dispatch(changeFavorite(favorite.docs || []));
       });
-  }, [user.uid]);
+  }, [user]);
 
   return (
     <BrowserRouter>

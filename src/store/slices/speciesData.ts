@@ -3,16 +3,16 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 interface authState {
     filterRace: string;
     favorites: CharacterCustomElement[];
-    newData: CharacterCustom | null;
+    data: CharacterCustom | null;
 }
 
 const initialState: authState = {
-    newData: null,
+    data: null,
     filterRace: '',
     favorites: []
 }
  
-export const dataFilter = createSlice({
+export const speciesData = createSlice({
     name: 'auth',
     initialState,
     reducers: {
@@ -21,20 +21,20 @@ export const dataFilter = createSlice({
         },
         toggleLike: (state, action: PayloadAction<CharacterCustomElement>) =>{
             let isExists = true
-            state.favorites = state.favorites.filter(el => {
-                if(el.id === action.payload.id){
-                    isExists = false
-                    return false
+                state.favorites = state.favorites.filter(el => {
+                    if(el.id === action.payload.id){
+                        isExists = false
+                        return false
+                    }
+                    return true
+                })
+                if(isExists){
+                    const newData = {
+                        ...action.payload,
+                        like: true
+                    }
+                    state.favorites.push(newData)
                 }
-                return true
-            })
-            if(isExists){
-                const newData = {
-                    ...action.payload,
-                    like: true
-                }
-                state.favorites.push(newData)
-            }
         },
         checkLikeStateAndFavorite: (state, action: PayloadAction<CharacterCustom>) => {
             const newData = action.payload.docs.map(el => {
@@ -48,7 +48,7 @@ export const dataFilter = createSlice({
                 }
                 return el
             })
-            state.newData = {
+            state.data = {
                 docs: newData,
                 limit: action.payload.limit,
                 page: action.payload.page,
@@ -61,5 +61,5 @@ export const dataFilter = createSlice({
     }
 })
 
-export default dataFilter.reducer;
-export const { changeFilterRace, toggleLike, checkLikeStateAndFavorite, changeFavorite } = dataFilter.actions;
+export default speciesData.reducer;
+export const { changeFilterRace, toggleLike, checkLikeStateAndFavorite, changeFavorite } = speciesData.actions;

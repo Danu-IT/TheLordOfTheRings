@@ -10,10 +10,9 @@ import Sort from "../../../components/Sort/Sort";
 import Filters from "./components/Filters";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import {
-  changeFavorite,
   changeFilterRace,
   checkLikeStateAndFavorite,
-} from "../../../store/slices/dataFilter";
+} from "../../../store/slices/speciesData";
 import { saveItem } from "../../../firebase/change";
 
 const Home = () => {
@@ -27,18 +26,16 @@ const Home = () => {
   const [search, setSeacrh] = useState<string>(searchQuery);
   const [sort, setSort] = useState(sortQuery);
 
-  const [savedFavorite, setSavedFavorite] = useState<any>([]);
-
   const navigate = useNavigate();
 
-  const { filterRace, favorites, newData } = useAppSelector(
-    (state) => state.dataFilter
+  const { filterRace, favorites, data } = useAppSelector(
+    (state) => state.speciesData
   );
   const { isAuth, user } = useAppSelector((state) => state.auth);
 
   const dispatch = useAppDispatch();
 
-  const { data } = ringsAPI.useGetCharactersQuery({
+  const { data: ringsData } = ringsAPI.useGetCharactersQuery({
     page: pageState,
     name: search,
     sort: sort,
@@ -46,12 +43,13 @@ const Home = () => {
   });
 
   useEffect(() => {
-    data && dispatch(checkLikeStateAndFavorite(data));
-  }, [favorites, data]);
+    ringsData && dispatch(checkLikeStateAndFavorite(ringsData));
+  }, [favorites, ringsData]);
 
   useEffect(() => {
-    if (isAuth && favorites.length && user.uid)
+    if (isAuth && favorites && favorites.length && user.uid) {
       saveItem(favorites, user.uid, "favorites");
+    }
   }, [favorites]);
 
   useEffect(() => {
@@ -80,10 +78,10 @@ const Home = () => {
       </UserControl>
       <Center>
         <Filters />
-        {newData && (
+        {data && (
           <Cards>
-            {newData.docs.length ? (
-              newData.docs.map((el) => (
+            {data.docs.length ? (
+              data.docs.map((el) => (
                 <Card
                   onClick={(id: string) => navigate(`/${id}`)}
                   key={el.id}
@@ -96,11 +94,11 @@ const Home = () => {
           </Cards>
         )}
       </Center>
-      {newData && newData.docs.length !== 0 && newData.docs && (
+      {data && data.docs.length !== 0 && data.docs && (
         <Pagination
           setPageState={setPageState}
           pageState={pageState}
-          info={newData}
+          info={data}
         />
       )}
     </Container>
