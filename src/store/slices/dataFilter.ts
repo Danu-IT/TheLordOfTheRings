@@ -39,7 +39,7 @@ export const dataFilter = createSlice({
         checkLikeStateAndFavorite: (state, action: PayloadAction<CharacterCustom>) => {
             const newData = action.payload.docs.map(el => {
                 let isExists = false
-                state.favorites.forEach(item => {
+                state.favorites && state.favorites.forEach(item => {
                     if(el.id === item.id) isExists = true
                 })
                 if(isExists) return {
