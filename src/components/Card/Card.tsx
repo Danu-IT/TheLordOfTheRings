@@ -2,6 +2,8 @@ import { FC } from "react";
 import { styled } from "styled-components";
 import Button from "../UI/Button/Button";
 import Like from "../Like";
+import { useAppDispatch } from "../../hooks/redux";
+import { toggleLike } from "../../store/slices/dataFilter";
 
 interface CardProps {
   item: CharacterCustomElement;
@@ -12,9 +14,14 @@ const Card: FC<CardProps> = ({ item, onClick }) => {
   const stringExists = (item: string) =>
     item && item !== "NaN" ? item : "Неизвестно";
 
+  const dispatch = useAppDispatch();
+
   return (
     <Container>
-      <Like isLike={item.like} />
+      <Like
+        onClick={() => dispatch(toggleLike(item))}
+        isLike={item.like}
+      />
       <Info>
         <Block>
           Имя: <span>{stringExists(item.name)}</span>

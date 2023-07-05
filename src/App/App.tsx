@@ -8,16 +8,22 @@ import { Suspense, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { changeUser } from "../store/slices/auth";
 import { auth } from "../firebase";
+import { getAllCardItems } from "../firebase/change";
+import { changeFavorite } from "../store/slices/dataFilter";
 
 const App = () => {
-  const isAuth = useAppSelector((state) => state.auth.isAuth);
+  const { isAuth, user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) dispatch(changeUser(user));
     });
-  }, []);
+    user.uid &&
+      getAllCardItems("favorites", user.uid).then((favorite: any) => {
+        dispatch(changeFavorite(favorite.docs));
+      });
+  }, [user.uid]);
 
   return (
     <BrowserRouter>

@@ -6,6 +6,7 @@ import { changeAuth } from "../../../../../store/slices/auth";
 import { signOut } from "@firebase/auth";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router";
+import { changeFavorite } from "../../../../../store/slices/dataFilter";
 
 const SignOut = () => {
   const dispatch = useAppDispatch();
@@ -17,6 +18,7 @@ const SignOut = () => {
       dispatch(changeAuth(false));
       dispatch(changeIsDropDownSignOut(false));
       navigate("/login");
+      dispatch(changeFavorite([]));
     } catch (e: any) {}
   };
 

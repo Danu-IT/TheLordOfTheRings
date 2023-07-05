@@ -60,9 +60,9 @@ const Character = () => {
 
 const Container = styled.div`
   position: relative;
-  max-width: 1300px;
+  max-width: 1350px;
   padding: 0 10px;
-  margin: 0 auto;
+  margin: 10px auto;
 `;
 const Content = styled.div`
   padding-top: 50px;
