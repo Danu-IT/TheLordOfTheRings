@@ -1,11 +1,11 @@
 import { ringsAPI } from '../../services/RingsService';
 import auth from './auth';
 import interfaceСhange from './interfaceСhange';
-import speciesData from './speciesData';
+import speciesSlice from './speciesSlice';
 
 export default {
     auth,
     interfaceСhange,
-    speciesData,
+    speciesSlice,
     [ringsAPI.reducerPath]: ringsAPI.reducer
 }

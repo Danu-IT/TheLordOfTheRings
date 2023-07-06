@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 import Button from "../UI/Button/Button";
 import Like from "../Like";
 import { useAppDispatch } from "../../hooks/redux";
-import { toggleLike } from "../../store/slices/speciesData";
+import { toggleLike } from "../../store/slices/speciesSlice";
 import { stringExists } from "../../utils";
 
 interface CardProps {

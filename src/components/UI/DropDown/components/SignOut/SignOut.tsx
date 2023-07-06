@@ -3,7 +3,6 @@ import { auth } from "../../../../../firebase";
 import { signOut } from "@firebase/auth";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router";
-import { publish } from "../../../../../events";
 
 const SignOut = () => {
   const navigate = useNavigate();
@@ -12,7 +11,8 @@ const SignOut = () => {
     try {
       await signOut(auth);
       navigate("/login");
-      publish("zeroingout");
+      const event = new CustomEvent("onUserLoggedOut");
+      document.dispatchEvent(event);
     } catch (e: any) {}
   };
 

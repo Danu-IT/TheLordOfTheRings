@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Favorite = () => {
   const navigate = useNavigate();
 
-  const { favorites } = useAppSelector((state) => state.speciesData);
+  const { favorites } = useAppSelector((state) => state.speciesSlice);
 
   return (
     <Container>

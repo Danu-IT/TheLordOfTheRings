@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import {
   changeFilterRace,
   checkLikeStateAndFavorite,
-} from "../../../store/slices/speciesData";
+} from "../../../store/slices/speciesSlice";
 import { saveItem } from "../../../firebase/change";
 
 const Home = () => {
@@ -29,7 +29,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   const { filterRace, favorites, data } = useAppSelector(
-    (state) => state.speciesData
+    (state) => state.speciesSlice
   );
   const { isAuth, user } = useAppSelector((state) => state.auth);
 

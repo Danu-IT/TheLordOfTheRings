@@ -12,7 +12,7 @@ const initialState: authState = {
     favorites: []
 }
  
-export const speciesData = createSlice({
+export const speciesSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
@@ -20,33 +20,23 @@ export const speciesData = createSlice({
             state.filterRace = action.payload;
         },
         toggleLike: (state, action: PayloadAction<CharacterCustomElement>) =>{
-            let isExists = true
-                state.favorites = state.favorites.filter(el => {
-                    if(el.id === action.payload.id){
-                        isExists = false
-                        return false
-                    }
-                    return true
+            const index = state.favorites.findIndex(x => x.id === action.payload.id)
+            if(index !== -1) state.favorites.splice(index, 1)
+            else {
+                state.favorites.push({
+                    ...action.payload,
+                    like: true
                 })
-                if(isExists){
-                    const newData = {
-                        ...action.payload,
-                        like: true
-                    }
-                    state.favorites.push(newData)
-                }
+            }
         },
         checkLikeStateAndFavorite: (state, action: PayloadAction<CharacterCustom>) => {
             const newData = action.payload.docs.map(el => {
-                let isExists = false
-                state.favorites && state.favorites.forEach(item => {
-                    if(el.id === item.id) isExists = true
-                })
-                if(isExists) return {
+                const index = state.favorites.findIndex(x => x.id === el.id)
+                if(index === -1) return el
+                return {
                     ...el,
                     like: true
                 }
-                return el
             })
             state.data = {
                 docs: newData,
@@ -61,5 +51,5 @@ export const speciesData = createSlice({
     }
 })
 
-export default speciesData.reducer;
-export const { changeFilterRace, toggleLike, checkLikeStateAndFavorite, changeFavorite } = speciesData.actions;
+export default speciesSlice.reducer;
+export const { changeFilterRace, toggleLike, checkLikeStateAndFavorite, changeFavorite } = speciesSlice.actions;
