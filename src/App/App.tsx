@@ -26,8 +26,8 @@ const App = () => {
 
   useEffect(() => {
     user.uid &&
-      getAllCardItems("favorites", user.uid).then((favorite: any) => {
-        dispatch(changeFavorite(favorite.docs || []));
+      getAllCardItems("favorites", user.uid).then((favorite) => {
+        favorite && dispatch(changeFavorite(favorite.docs || []));
       });
   }, [user]);
 

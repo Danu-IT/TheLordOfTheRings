@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { logout } from "./auth";
+import { userLoggedOut } from "./auth";
 
 interface authState {
     filterRace: string;
@@ -51,7 +51,7 @@ export const speciesSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(logout, (state) => {
+        builder.addCase(userLoggedOut, (state) => {
             state.favorites = [];
         })
     }

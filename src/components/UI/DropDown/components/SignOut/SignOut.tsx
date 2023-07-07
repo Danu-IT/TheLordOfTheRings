@@ -4,7 +4,7 @@ import { signOut } from "@firebase/auth";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router";
 import { useAppDispatch } from "../../../../../hooks/redux";
-import { logout } from "../../../../../store/slices/auth";
+import { userLoggedOut } from "../../../../../store/slices/auth";
 
 const SignOut = () => {
   const navigate = useNavigate();
@@ -14,8 +14,8 @@ const SignOut = () => {
     try {
       await signOut(auth);
       navigate("/login");
-      dispatch(logout());
-    } catch (e: any) {}
+      dispatch(userLoggedOut());
+    } catch (e) {}
   };
 
   return <Container onClick={handleLogout}>Sign out</Container>;

@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { logout } from "./auth";
+import { userLoggedOut } from "./auth";
 
 interface authState {
     isDropDownSignOut: boolean;
@@ -18,7 +18,7 @@ export const interfaceСhange = createSlice({
         },
     },
     extraReducers: (builder) => {
-        builder.addCase(logout, (state) => {
+        builder.addCase(userLoggedOut, (state) => {
             state.isDropDownSignOut = false
         })
     }

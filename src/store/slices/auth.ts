@@ -29,15 +29,12 @@ export const Auth = createSlice({
         changeUser: (state, action: PayloadAction<User>) => {
             state.user = action.payload;
         },
-        userLoggedOut: (state, action: PayloadAction<undefined>) => {
+        userLoggedOut: (state, action: PayloadAction<void>) => {
             state.user = initialStateUser;
-        },
-        logout: (state, action: PayloadAction<undefined>) => {
             state.isAuth = false;
-            state.user = initialStateUser;
-        }
+        },
     }
 })
 
 export default Auth.reducer;
-export const { changeAuth, changeUser, userLoggedOut, logout } = Auth.actions;
+export const { changeAuth, changeUser, userLoggedOut } = Auth.actions;
