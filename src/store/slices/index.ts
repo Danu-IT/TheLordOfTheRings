@@ -1,11 +1,11 @@
 import { ringsAPI } from '../../services/RingsService';
 import auth from './auth';
 import interfaceСhange from './interfaceСhange';
-import dataFilter from './dataFilter';
+import speciesSlice from './speciesSlice';
 
 export default {
     auth,
     interfaceСhange,
-    dataFilter,
+    speciesSlice,
     [ringsAPI.reducerPath]: ringsAPI.reducer
 }

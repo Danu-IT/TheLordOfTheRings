@@ -6,18 +6,30 @@ import { privateRoutes, publicRoutes } from "../routes";
 
 import { Suspense, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { changeUser } from "../store/slices/auth";
+import { changeUser, userLoggedOut } from "../store/slices/auth";
 import { auth } from "../firebase";
+import { getAllCardItems } from "../firebase/change";
+import { changeFavorite } from "../store/slices/speciesSlice";
 
 const App = () => {
-  const isAuth = useAppSelector((state) => state.auth.isAuth);
+  const { isAuth, user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) dispatch(changeUser(user));
+      else dispatch(userLoggedOut());
     });
+
+    return unsubscribe;
   }, []);
+
+  useEffect(() => {
+    user.uid &&
+      getAllCardItems("favorites", user.uid).then((favorite) => {
+        favorite && dispatch(changeFavorite(favorite.docs || []));
+      });
+  }, [user]);
 
   return (
     <BrowserRouter>

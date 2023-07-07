@@ -9,7 +9,11 @@ import Search from "../../../components/Search/Search";
 import Sort from "../../../components/Sort/Sort";
 import Filters from "./components/Filters";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
-import { changeFilterRace } from "../../../store/slices/dataFilter";
+import {
+  changeFilterRace,
+  checkLikeStateAndFavorite,
+} from "../../../store/slices/speciesSlice";
+import { saveItem } from "../../../firebase/change";
 
 const Home = () => {
   const [searchParams] = useSearchParams();
@@ -23,15 +27,30 @@ const Home = () => {
   const [sort, setSort] = useState(sortQuery);
 
   const navigate = useNavigate();
-  const { filterRace } = useAppSelector((state) => state.dataFilter);
+
+  const { filterRace, favorites, data } = useAppSelector(
+    (state) => state.speciesSlice
+  );
+  const { isAuth, user } = useAppSelector((state) => state.auth);
+
   const dispatch = useAppDispatch();
 
-  const { data } = ringsAPI.useGetCharactersQuery({
+  const { data: ringsData } = ringsAPI.useGetCharactersQuery({
     page: pageState,
     name: search,
     sort: sort,
     race: filterRace,
   });
+
+  useEffect(() => {
+    ringsData && dispatch(checkLikeStateAndFavorite(ringsData));
+  }, [favorites, ringsData]);
+
+  useEffect(() => {
+    if (isAuth && favorites && favorites.length && user.uid) {
+      saveItem(favorites, user.uid, "favorites");
+    }
+  }, [favorites]);
 
   useEffect(() => {
     navigate(
@@ -59,9 +78,9 @@ const Home = () => {
       </UserControl>
       <Center>
         <Filters />
-        {data?.docs && (
-          <Cards info={data.docs.length < 3 ? true : false}>
-            {data?.docs.length ? (
+        {data && (
+          <Cards>
+            {data.docs.length ? (
               data.docs.map((el) => (
                 <Card
                   onClick={(id: string) => navigate(`/${id}`)}
@@ -75,7 +94,7 @@ const Home = () => {
           </Cards>
         )}
       </Center>
-      {data?.docs.length !== 0 && data?.docs && (
+      {data && data.docs.length !== 0 && data.docs && (
         <Pagination
           setPageState={setPageState}
           pageState={pageState}
@@ -86,10 +105,6 @@ const Home = () => {
   );
 };
 
-interface HomeStyleProps {
-  info: boolean;
-}
-
 const Container = styled.div`
   max-width: 1350px;
   margin: 10px auto;
@@ -97,8 +112,8 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const Cards = styled.div<HomeStyleProps>`
-  display: ${({ info }) => (info ? "" : "flex")};
+export const Cards = styled.div`
+  display: flex;
   flex-wrap: wrap;
   flex: 1;
   gap: 20px;

@@ -7,6 +7,8 @@ import SignOut from "../UI/DropDown/components/SignOut";
 import { changeIsDropDownSignOut } from "../../store/slices/interfaceСhange";
 
 import { styled } from "styled-components";
+import Navbar from "../Navbar";
+import { navbarRoutes } from "../../routes";
 
 const Header = () => {
   const isAuth = useAppSelector((state) => state.auth.isAuth);
@@ -20,7 +22,7 @@ const Header = () => {
     <Container>
       <Logo />
       <Right>
-        {isAuth ? <>Избранное</> : <AuthButtons />}
+        {isAuth ? <Navbar list={navbarRoutes} /> : <AuthButtons />}
         <User
           onClick={() => dispatch(changeIsDropDownSignOut(!isDropDownSignOut))}
         />

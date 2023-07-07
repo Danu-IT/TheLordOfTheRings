@@ -1,26 +1,24 @@
 import { auth } from "../../../../../firebase";
-import { changeIsDropDownSignOut } from "../../../../../store/slices/interfaceСhange";
-import { useAppDispatch } from "../../../../../hooks/redux";
-import { changeAuth } from "../../../../../store/slices/auth";
 
 import { signOut } from "@firebase/auth";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router";
+import { useAppDispatch } from "../../../../../hooks/redux";
+import { userLoggedOut } from "../../../../../store/slices/auth";
 
 const SignOut = () => {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
-  const logout = async () => {
+  const handleLogout = async () => {
     try {
       await signOut(auth);
-      dispatch(changeAuth(false));
-      dispatch(changeIsDropDownSignOut(false));
       navigate("/login");
-    } catch (e: any) {}
+      dispatch(userLoggedOut());
+    } catch (e) {}
   };
 
-  return <Container onClick={logout}>Sign out</Container>;
+  return <Container onClick={handleLogout}>Sign out</Container>;
 };
 
 const Container = styled.div`
