@@ -3,20 +3,22 @@ import { auth } from "../../../../../firebase";
 import { signOut } from "@firebase/auth";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router";
+import { useAppDispatch } from "../../../../../hooks/redux";
+import { logout } from "../../../../../store/slices/auth";
 
 const SignOut = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
-  const logout = async () => {
+  const handleLogout = async () => {
     try {
       await signOut(auth);
       navigate("/login");
-      const event = new CustomEvent("onUserLoggedOut");
-      document.dispatchEvent(event);
+      dispatch(logout());
     } catch (e: any) {}
   };
 
-  return <Container onClick={logout}>Sign out</Container>;
+  return <Container onClick={handleLogout}>Sign out</Container>;
 };
 
 const Container = styled.div`

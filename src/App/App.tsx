@@ -6,29 +6,14 @@ import { privateRoutes, publicRoutes } from "../routes";
 
 import { Suspense, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { changeAuth, changeUser, userLoggedOut } from "../store/slices/auth";
+import { changeUser, userLoggedOut } from "../store/slices/auth";
 import { auth } from "../firebase";
 import { getAllCardItems } from "../firebase/change";
 import { changeFavorite } from "../store/slices/speciesSlice";
-import { changeIsDropDownSignOut } from "../store/slices/interfaceСhange";
 
 const App = () => {
   const { isAuth, user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
-
-  const listener = () => {
-    dispatch(changeFavorite([]));
-    dispatch(changeAuth(false));
-    dispatch(changeIsDropDownSignOut(false));
-  };
-
-  useEffect(() => {
-    document.addEventListener("onUserLoggedOut", listener);
-
-    return () => {
-      document.removeEventListener("onUserLoggedOut", listener);
-    };
-  }, []);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {

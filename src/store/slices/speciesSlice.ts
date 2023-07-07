@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { logout } from "./auth";
 
 interface authState {
     filterRace: string;
@@ -48,7 +49,13 @@ export const speciesSlice = createSlice({
         changeFavorite: (state, action: PayloadAction<CharacterCustomElement[]>) => {
             state.favorites = action.payload
         }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(logout, (state) => {
+            state.favorites = [];
+        })
     }
+    
 })
 
 export default speciesSlice.reducer;
