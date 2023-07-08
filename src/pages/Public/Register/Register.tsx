@@ -4,6 +4,7 @@ import { auth } from "../../../firebase";
 import { useNavigate } from "react-router-dom";
 import Form from "../../../components/UI/Form";
 import RegisterForm from "../../../components/UI/Form/Components/RegisterForm";
+import { styled } from "styled-components";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -43,8 +44,17 @@ const Register = () => {
         errors={errors}
         isValid={isValid}
       />
+      <Quest onClick={() => navigate("/login")}>Аккаунт уже создан?</Quest>
     </Form>
   );
 };
+
+const Quest = styled.div`
+  font-size: 20px;
+  cursor: pointer;
+  &:hover {
+    color: yellow;
+  }
+`;
 
 export default Register;

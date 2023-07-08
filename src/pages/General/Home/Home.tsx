@@ -13,7 +13,10 @@ import {
   changeFilterRace,
   checkLikeStateAndFavorite,
 } from "../../../store/slices/speciesSlice";
-import { saveItem } from "../../../firebase/change";
+import Modal from "../../../components/Modal";
+import HelpContent from "../../../components/Modal/components/HelpContent";
+import ViewCardsSwitch from "../../../components/ViewCardsSwitch/ViewCardsSwitch";
+import { useAppContext } from "../../../hooks/useAppContext";
 
 const Home = () => {
   const [searchParams] = useSearchParams();
@@ -22,18 +25,19 @@ const Home = () => {
   const sortQuery = searchParams.get("sort") || "";
   const filterRaceQuery = searchParams.get("race") || "";
 
+  const { regularСardType } = useAppContext();
+
   const [pageState, setPageState] = useState(Number(pageQuery));
   const [search, setSeacrh] = useState<string>(searchQuery);
   const [sort, setSort] = useState(sortQuery);
-
-  const navigate = useNavigate();
+  const [isModalHelp, setIsModalHelp] = useState(false);
 
   const { filterRace, favorites, data } = useAppSelector(
     (state) => state.speciesSlice
   );
-  const { isAuth, user } = useAppSelector((state) => state.auth);
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const { data: ringsData } = ringsAPI.useGetCharactersQuery({
     page: pageState,
@@ -43,14 +47,13 @@ const Home = () => {
   });
 
   useEffect(() => {
-    ringsData && dispatch(checkLikeStateAndFavorite(ringsData));
-  }, [favorites, ringsData]);
+    dispatch(changeFilterRace(filterRaceQuery));
+    setSort("asc");
+  }, []);
 
   useEffect(() => {
-    if (isAuth && favorites && favorites.length && user.uid) {
-      saveItem(favorites, user.uid, "favorites");
-    }
-  }, [favorites]);
+    ringsData && dispatch(checkLikeStateAndFavorite(ringsData));
+  }, [favorites, ringsData]);
 
   useEffect(() => {
     navigate(
@@ -60,10 +63,8 @@ const Home = () => {
   }, [pageState, setPageState, search, setSeacrh, sort, setSort, filterRace]);
 
   useEffect(() => {
-    dispatch(changeFilterRace(filterRaceQuery));
-    setSort("asc");
-  }, []);
-
+    setPageState(1);
+  }, [search, setSeacrh, sort, setSort, filterRace]);
   return (
     <Container>
       <UserControl>
@@ -76,13 +77,16 @@ const Home = () => {
           setSort={setSort}
         />
       </UserControl>
+      <ViewCardsSwitch />
       <Center>
         <Filters />
         {data && (
-          <Cards>
+          <Cards view={regularСardType}>
             {data.docs.length ? (
               data.docs.map((el) => (
                 <Card
+                  isModalHelp={isModalHelp}
+                  setIsModalHelp={setIsModalHelp}
                   onClick={(id: string) => navigate(`/${id}`)}
                   key={el.id}
                   item={el}
@@ -94,6 +98,11 @@ const Home = () => {
           </Cards>
         )}
       </Center>
+      <Modal
+        visibleModal={isModalHelp}
+        setVisibleModal={setIsModalHelp}>
+        <HelpContent />
+      </Modal>
       {data && data.docs.length !== 0 && data.docs && (
         <Pagination
           setPageState={setPageState}
@@ -105,6 +114,10 @@ const Home = () => {
   );
 };
 
+interface HomeStyleProps {
+  view?: boolean;
+}
+
 const Container = styled.div`
   max-width: 1350px;
   margin: 10px auto;
@@ -112,11 +125,11 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-export const Cards = styled.div`
+export const Cards = styled.div<HomeStyleProps>`
   display: flex;
   flex-wrap: wrap;
   flex: 1;
-  gap: 20px;
+  gap: ${({ view }) => (view ? "10px" : "20px")};
   margin: 40px 30px;
 `;
 
@@ -126,6 +139,7 @@ const UserControl = styled.div`
 `;
 const Center = styled.div`
   display: flex;
+  align-items: baseline;
 `;
 const Title = styled.h2``;
 

@@ -1,12 +1,14 @@
+import { logger } from './middleware/logger';
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import {  
-    persistReducer, 
+import {
+    persistReducer,
     FLUSH,
     REHYDRATE,
     PAUSE,
     PERSIST,
     PURGE,
-    REGISTER, } from 'redux-persist'
+    REGISTER,
+} from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
 import slices from './slices';
@@ -16,7 +18,7 @@ const persistConfig = {
     key: 'root',
     storage,
     whitelist: ['auth']
-  }
+}
 
 const rootReducer = combineReducers(slices);
 
@@ -28,8 +30,8 @@ export const setupStore = () => {
         middleware: (getDefaultMiddleware) => getDefaultMiddleware({
             serializableCheck: {
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-            }
-        }).concat(ringsAPI.middleware),
+            },
+        }).concat(ringsAPI.middleware, logger),
     })
 }
 
