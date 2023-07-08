@@ -5,14 +5,16 @@ interface authState {
     filterRace: string;
     favorites: CharacterCustomElement[];
     data: CharacterCustom | null;
+    history: string[];
 }
 
 const initialState: authState = {
     data: null,
     filterRace: '',
-    favorites: []
+    favorites: [],
+    history: []
 }
- 
+
 export const speciesSlice = createSlice({
     name: 'auth',
     initialState,
@@ -20,9 +22,9 @@ export const speciesSlice = createSlice({
         changeFilterRace: (state, action: PayloadAction<string>) => {
             state.filterRace = action.payload;
         },
-        toggleLike: (state, action: PayloadAction<CharacterCustomElement>) =>{
+        toggleLike: (state, action: PayloadAction<CharacterCustomElement>) => {
             const index = state.favorites.findIndex(x => x.id === action.payload.id)
-            if(index !== -1) state.favorites.splice(index, 1)
+            if (index !== -1) state.favorites.splice(index, 1)
             else {
                 state.favorites.push({
                     ...action.payload,
@@ -33,7 +35,7 @@ export const speciesSlice = createSlice({
         checkLikeStateAndFavorite: (state, action: PayloadAction<CharacterCustom>) => {
             const newData = action.payload.docs.map(el => {
                 const index = state.favorites.findIndex(x => x.id === el.id)
-                if(index === -1) return el
+                if (index === -1) return el
                 return {
                     ...el,
                     like: true
@@ -55,7 +57,7 @@ export const speciesSlice = createSlice({
             state.favorites = [];
         })
     }
-    
+
 })
 
 export default speciesSlice.reducer;

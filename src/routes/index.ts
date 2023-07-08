@@ -6,6 +6,7 @@ const Login = lazy(() => import('../pages/Public/Login'))
 const Character = lazy(() => import('../pages/Private/Character'))
 const Favorite = lazy(() => import('../pages/Private/Favorite'))
 const NotFound = lazy(() => import('../pages/General/NotFound'))
+const History = lazy(() => import('../pages/Private/History'))
 
 export interface IRoute {
     path: string;
@@ -18,7 +19,8 @@ export enum RoutesNamesPrivate {
     HOME = "/",
     CHARACTER = "/:id",
     FAVORITE = '/favorite',
-    NOTFOUND = '/notfound'
+    NOTFOUND = '/notfound',
+    HISTORY = '/history',
 }
 
 export enum RoutesNamesPublic {
@@ -29,8 +31,8 @@ export enum RoutesNamesPublic {
 }
 
 export const navbarRoutes: IRoute[] = [
-    { path: RoutesNamesPrivate.HOME, component: Home, type: "Домашняя" },
-    { path: RoutesNamesPrivate.FAVORITE, component: Favorite, type: "Избранное" }
+    { path: RoutesNamesPrivate.FAVORITE, component: Favorite, type: "Избранное" },
+    { path: RoutesNamesPrivate.HISTORY, component: History, type: "История" },
 ]
 
 export const privateRoutes: IRoute[] = [
@@ -38,6 +40,7 @@ export const privateRoutes: IRoute[] = [
     { path: RoutesNamesPrivate.CHARACTER, component: Character, type: "Character" },
     { path: RoutesNamesPrivate.FAVORITE, component: Favorite, type: "Favorite" },
     { path: RoutesNamesPrivate.NOTFOUND, component: NotFound, type: "NotFound" },
+    { path: RoutesNamesPrivate.HISTORY, component: History, type: "History" },
 ];
 
 export const publicRoutes: IRoute[] = [
