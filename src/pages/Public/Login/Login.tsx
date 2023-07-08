@@ -71,6 +71,7 @@ const Login = () => {
         <BsFacebook size={20} />
         <AiFillGithub size={20} />
       </Sign>
+      <Quest onClick={() => navigate("/register")}>Создать аккаунт</Quest>
     </Form>
   );
 };
@@ -82,6 +83,14 @@ const Sign = styled.div`
   gap: 15px;
   & > * {
     cursor: pointer;
+  }
+`;
+
+const Quest = styled.div`
+  font-size: 20px;
+  cursor: pointer;
+  &:hover {
+    color: yellow;
   }
 `;
 

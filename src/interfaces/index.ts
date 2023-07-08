@@ -1,4 +1,4 @@
 interface DataRace {
-    value: string, 
+    value: string,
     active: boolean
 }

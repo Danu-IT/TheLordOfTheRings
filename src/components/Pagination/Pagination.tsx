@@ -11,6 +11,10 @@ interface PaginationProps {
 }
 
 const Pagination: FC<PaginationProps> = ({ info, pageState, setPageState }) => {
+  if (info && info.pages === 1) {
+    return null;
+  }
+
   return (
     <Container>
       <Arrow onClick={() => setPageState(pageState - 1)}>

@@ -1,15 +1,9 @@
 import { styled } from "styled-components";
 import FilterItem from "./components/FilterItem";
-import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
-interface FilterProps {
-  options: DataRace[];
-  title: string;
-  setOptions: (value: DataRace[]) => void;
-}
-
-const Filter = ({ options, title, setOptions }: FilterProps) => {
-  const changeOptions = (value: string) => {
+const Filter = ({ options, title, setOptions }) => {
+  const changeOptions = (value) => {
     const newOptionsState = options.map((el) => {
       if (el.value === value) {
         el.active = !el.active;
@@ -48,3 +42,18 @@ const ListFilter = styled.div`
 `;
 
 export default Filter;
+
+Filter.propTypes = {
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      active: PropTypes.bool.isRequired,
+    })
+  ).isRequired,
+  setOptions: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+};
+
+Filter.defaultProps = {
+  title: "",
+};

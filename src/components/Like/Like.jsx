@@ -1,12 +1,8 @@
 import { AiFillHeart } from "react-icons/ai";
 import { styled } from "styled-components";
+import PropTypes from "prop-types";
 
-interface LikeProps {
-  isLike: boolean;
-  onClick: () => void;
-}
-
-const Like = ({ isLike, onClick }: LikeProps) => {
+const Like = ({ isLike, onClick }) => {
   return (
     <Container onClick={onClick}>
       <AiFillHeart
@@ -15,6 +11,11 @@ const Like = ({ isLike, onClick }: LikeProps) => {
       />
     </Container>
   );
+};
+
+Like.propTypes = {
+  isLike: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 const Container = styled.div`
