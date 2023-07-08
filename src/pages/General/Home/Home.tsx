@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import {
+  createSearchParams,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 
 import { ringsAPI } from "../../../services/RingsService";
 import Card from "../../../components/Card/Card";
@@ -10,6 +14,7 @@ import Sort from "../../../components/Sort/Sort";
 import Filters from "./components/Filters";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import {
+  addItemHistory,
   changeFilterRace,
   checkLikeStateAndFavorite,
 } from "../../../store/slices/speciesSlice";
@@ -20,6 +25,7 @@ import { useAppContext } from "../../../hooks/useAppContext";
 
 const Home = () => {
   const [searchParams] = useSearchParams();
+
   const pageQuery = searchParams.get("page") || "1";
   const searchQuery = searchParams.get("search") || "";
   const sortQuery = searchParams.get("sort") || "";
@@ -46,6 +52,17 @@ const Home = () => {
     race: filterRace,
   });
 
+  const handleSearch = (value: string) => {
+    setSeacrh(value);
+    if (value) {
+      const path = `/?${createSearchParams({
+        search: value,
+        race: filterRace,
+      })}`;
+      dispatch(addItemHistory(path));
+    }
+  };
+
   useEffect(() => {
     dispatch(changeFilterRace(filterRaceQuery));
     setSort("asc");
@@ -57,7 +74,12 @@ const Home = () => {
 
   useEffect(() => {
     navigate(
-      `?page=${pageState}&search=${search}&sort=${sort}&race=${filterRace}`
+      `?${createSearchParams({
+        search: search,
+        race: filterRace,
+        page: String(pageState),
+        sort: sort,
+      })}`
     );
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [pageState, setPageState, search, setSeacrh, sort, setSort, filterRace]);
@@ -65,12 +87,13 @@ const Home = () => {
   useEffect(() => {
     setPageState(1);
   }, [search, setSeacrh, sort, setSort, filterRace]);
+
   return (
     <Container>
       <UserControl>
         <Search
           searchValue={search}
-          onClick={(value: string) => setSeacrh(value)}
+          onClick={handleSearch}
         />
         <Sort
           sort={sort}

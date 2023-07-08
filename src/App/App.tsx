@@ -9,16 +9,16 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { changeUser, userLoggedOut } from "../store/slices/auth";
 import { auth } from "../firebase";
 import { getAllCardItems, saveItem } from "../firebase/change";
-import { changeFavorite } from "../store/slices/speciesSlice";
+import { changeFavorite, changeHistory } from "../store/slices/speciesSlice";
 import { AppProvider } from "../context";
 
 const App = () => {
   const [regularСardType, setRegularСardType] = useState(true);
 
   const { isAuth, user } = useAppSelector((state) => state.auth);
-  const dispatch = useAppDispatch();
+  const { favorites, history } = useAppSelector((state) => state.speciesSlice);
 
-  const { favorites } = useAppSelector((state) => state.speciesSlice);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -30,17 +30,25 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    user.uid &&
-      getAllCardItems("favorites", user.uid).then((favorite) => {
-        favorite && dispatch(changeFavorite(favorite.docs || []));
-      });
+    getAllCardItems("favorites", user.uid).then((favorite) => {
+      favorite && dispatch(changeFavorite(favorite.docs || []));
+    });
+    getAllCardItems("history", user.uid).then((history) => {
+      history && dispatch(changeHistory(history.docs || []));
+    });
   }, [user]);
 
   useEffect(() => {
-    if (isAuth && favorites.length && user.uid) {
+    if (isAuth && favorites.length) {
       saveItem(favorites, user.uid, "favorites");
     }
   }, [favorites]);
+
+  useEffect(() => {
+    if (history.length) {
+      saveItem(history, user.uid, "history");
+    }
+  }, [history]);
 
   return (
     <AppProvider
