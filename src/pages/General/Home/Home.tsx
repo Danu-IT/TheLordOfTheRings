@@ -28,7 +28,6 @@ const Home = () => {
   const pageQuery = searchParams.get("page") || "1";
   const searchQuery = searchParams.get("search") || "";
   const sortQuery = searchParams.get("sort") || "";
-  const filterRaceQuery = searchParams.get("race") || "";
 
   const { regularСardType } = useAppContext();
 
@@ -61,10 +60,6 @@ const Home = () => {
       dispatch(addItemHistory(path));
     }
   };
-
-  useEffect(() => {
-    setSort("asc");
-  }, [filterRaceQuery]);
 
   useEffect(() => {
     ringsData && dispatch(checkLikeStateAndFavorite(ringsData));

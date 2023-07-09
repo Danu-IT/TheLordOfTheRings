@@ -13,10 +13,6 @@ const Filters = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    setOptionsRaceState(arrayRace);
-  }, []);
-
-  useEffect(() => {
     const updateArray = optionsRaceState.map((el) => {
       if (filterRaceQuery.indexOf(el.value) !== -1) {
         el.active = true;

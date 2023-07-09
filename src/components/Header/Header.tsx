@@ -11,6 +11,7 @@ import { navbarRoutes } from "../../routes";
 
 const Header = () => {
   const isAuth = useAppSelector((state) => state.auth.isAuth);
+
   const isDropDownSignOut = useAppSelector(
     (state) => state.interfaceСhange.isDropDownSignOut
   );

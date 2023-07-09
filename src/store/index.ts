@@ -1,4 +1,4 @@
-import { logger } from './middleware/logger';
+import { cooperationWithFirebase } from './middleware/cooperationWithFirebase';
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import {
     persistReducer,
@@ -31,7 +31,7 @@ export const setupStore = () => {
             serializableCheck: {
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
             },
-        }).concat(ringsAPI.middleware, logger),
+        }).concat(ringsAPI.middleware, cooperationWithFirebase),
     })
 }
 

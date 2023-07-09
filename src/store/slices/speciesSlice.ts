@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { userLoggedOut } from "./auth";
+import { saveItem } from "../../firebase/change";
 
 interface authState {
     filterRace: string;
@@ -48,13 +49,13 @@ export const speciesSlice = createSlice({
             };
         },
         changeFavorite: (state, action: PayloadAction<CharacterCustomElement[]>) => {
-            state.favorites = action.payload
-        },
-        addItemHistory: (state, action: PayloadAction<string>) => {
-            state.history.push(action.payload)
+            state.favorites = action.payload;
         },
         changeHistory: (state, action: PayloadAction<string[]>) => {
             state.history = action.payload
+        },
+        addItemHistory: (state, action: PayloadAction<string>) => {
+            state.history.push(action.payload)
         },
         removeItemHistory: (state, action: PayloadAction<number>) => {
             state.history.splice(action.payload, 1)

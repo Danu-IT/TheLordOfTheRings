@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { useAppSelector } from "../../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { Cards } from "../../General/Home/Home";
 import Card from "../../../components/Card/Card";
 import { useNavigate } from "react-router-dom";
