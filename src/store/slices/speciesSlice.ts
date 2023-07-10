@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { userLoggedOut } from "./auth";
+import { saveItem } from "../../firebase/change";
 
 interface authState {
     filterRace: string;
@@ -7,12 +8,11 @@ interface authState {
     data: CharacterCustom | null;
     history: string[];
 }
-
 const initialState: authState = {
     data: null,
     filterRace: '',
     favorites: [],
-    history: []
+    history: [],
 }
 
 export const speciesSlice = createSlice({
@@ -49,16 +49,29 @@ export const speciesSlice = createSlice({
             };
         },
         changeFavorite: (state, action: PayloadAction<CharacterCustomElement[]>) => {
-            state.favorites = action.payload
-        }
+            state.favorites = action.payload;
+        },
+        changeHistory: (state, action: PayloadAction<string[]>) => {
+            state.history = action.payload
+        },
+        addItemHistory: (state, action: PayloadAction<string>) => {
+            state.history.push(action.payload)
+        },
+        removeItemHistory: (state, action: PayloadAction<number>) => {
+            state.history.splice(action.payload, 1)
+        },
+        clearAllHistory: (state, action: PayloadAction<undefined>) => {
+            state.history = []
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(userLoggedOut, (state) => {
             state.favorites = [];
-        })
+            state.history = []
+        });
     }
 
 })
 
 export default speciesSlice.reducer;
-export const { changeFilterRace, toggleLike, checkLikeStateAndFavorite, changeFavorite } = speciesSlice.actions;
+export const { changeFilterRace, toggleLike, checkLikeStateAndFavorite, changeFavorite, addItemHistory, changeHistory, removeItemHistory, clearAllHistory } = speciesSlice.actions;

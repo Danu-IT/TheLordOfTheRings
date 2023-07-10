@@ -18,6 +18,7 @@ const Filters = () => {
         el.active = true;
         return el;
       }
+      el.active = false;
       return el;
     });
     setOptionsRaceState(updateArray);
@@ -31,7 +32,7 @@ const Filters = () => {
     });
 
     dispatch(changeFilterRace(strFilter.substring(0, strFilter.length - 1)));
-  }, [optionsRaceState, setOptionsRaceState]);
+  }, [optionsRaceState, setOptionsRaceState, filterRaceQuery]);
 
   return (
     <div>

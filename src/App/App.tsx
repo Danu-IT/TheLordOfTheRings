@@ -3,44 +3,26 @@ import Header from "../components/Header/Header";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import Home from "../pages/General/Home";
 import { privateRoutes, publicRoutes } from "../routes";
-
 import { Suspense, useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { changeUser, userLoggedOut } from "../store/slices/auth";
 import { auth } from "../firebase";
-import { getAllCardItems, saveItem } from "../firebase/change";
-import { changeFavorite } from "../store/slices/speciesSlice";
 import { AppProvider } from "../context";
 
 const App = () => {
   const [regularСardType, setRegularСardType] = useState(true);
 
-  const { isAuth, user } = useAppSelector((state) => state.auth);
-  const dispatch = useAppDispatch();
+  const { isAuth } = useAppSelector((state) => state.auth);
 
-  const { favorites } = useAppSelector((state) => state.speciesSlice);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) dispatch(changeUser(user));
       else dispatch(userLoggedOut());
     });
-
     return unsubscribe;
   }, []);
-
-  useEffect(() => {
-    user.uid &&
-      getAllCardItems("favorites", user.uid).then((favorite) => {
-        favorite && dispatch(changeFavorite(favorite.docs || []));
-      });
-  }, [user]);
-
-  useEffect(() => {
-    if (isAuth && favorites.length && user.uid) {
-      saveItem(favorites, user.uid, "favorites");
-    }
-  }, [favorites]);
 
   return (
     <AppProvider
@@ -77,5 +59,4 @@ const App = () => {
     </AppProvider>
   );
 };
-
 export default App;

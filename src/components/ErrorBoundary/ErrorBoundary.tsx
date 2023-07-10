@@ -1,4 +1,5 @@
 import { Component, ErrorInfo, ReactNode } from "react";
+import NotFound from "../../pages/General/NotFound/NotFound";
 
 interface Props {
   children: ReactNode;
@@ -23,7 +24,7 @@ class ErrorBoundary extends Component<Props, State> {
 
   public render() {
     if (this.state.hasError) {
-      return <h1>Sorry.. there was an error</h1>;
+      return <NotFound />;
     }
 
     return this.props.children;
