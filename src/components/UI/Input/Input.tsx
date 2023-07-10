@@ -6,9 +6,9 @@ import { HiEyeSlash } from "react-icons/hi2";
 
 interface InputProps {
   value?: string;
-  config: any;
+  config?: any;
   placeholder: string;
-  Icon: IconType;
+  Icon?: IconType;
   type: string;
 }
 
@@ -16,9 +16,7 @@ const Input: FC<InputProps> = ({ placeholder, Icon, value, type, config }) => {
   const [visible, setVisible] = useState(true);
   return (
     <Container>
-      <IconInput>
-        <Icon />
-      </IconInput>
+      <IconInput>{Icon && <Icon />}</IconInput>
       <InputTag
         {...config}
         id={type}

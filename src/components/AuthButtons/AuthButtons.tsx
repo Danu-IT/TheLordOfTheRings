@@ -11,13 +11,13 @@ const AuthButtons = () => {
       <Button
         onClick={() => navigate("/register")}
         color="white"
-        bg="#e5c522">
+        variant="#e5c522">
         Регистрация
       </Button>
       <Button
         onClick={() => navigate("/login")}
         color="black"
-        bg="white">
+        variant="white">
         Авторизация
       </Button>
     </Container>

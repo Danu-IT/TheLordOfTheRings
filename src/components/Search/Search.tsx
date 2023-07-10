@@ -24,7 +24,7 @@ const Search = ({ onClick, searchValue }: SearchProps) => {
         }
       />
       <Button
-        bg={isFocusSearch ? "white" : "inherit"}
+        variant={isFocusSearch ? "white" : "inherit"}
         color={isFocusSearch ? "black" : "white"}
         onClick={() => onClick(value)}>
         Поиск

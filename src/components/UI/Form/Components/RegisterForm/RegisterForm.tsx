@@ -5,6 +5,7 @@ import { AiOutlineMail } from "react-icons/ai";
 import MessageError from "../../../../MessageError";
 import Button from "../../../Button";
 import { UseFormRegister, FieldErrors } from "react-hook-form";
+import { MdPassword } from "react-icons/md";
 
 interface RegisterFormProps {
   register: UseFormRegister<FormRegistrasion>;
@@ -41,7 +42,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ register, errors, isValid }) => {
       <ContainerInput>
         <Input
           placeholder="password"
-          Icon={AiOutlineMail}
+          Icon={MdPassword}
           type="password"
           config={{
             ...register("password", {
@@ -64,7 +65,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ register, errors, isValid }) => {
       <ContainerInput>
         <Input
           placeholder="confirm password"
-          Icon={AiOutlineMail}
+          Icon={MdPassword}
           type="password"
           config={{
             ...register("cpassword", {
@@ -85,7 +86,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ register, errors, isValid }) => {
         )}
       </ContainerInput>
       <ButtonCustom
-        bg="white"
+        variant="white"
         color="black"
         disabled={!isValid}>
         Зарегистрироваться

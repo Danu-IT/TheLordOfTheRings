@@ -53,7 +53,7 @@ const Card: FC<CardProps> = ({
       <ButtonCard isModalHelp={isModalHelp}>
         <Button
           onClick={handlerCard}
-          bg="white"
+          variant="white"
           color="black">
           Открыть
         </Button>

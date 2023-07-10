@@ -5,6 +5,7 @@ import Input from "../../../Input/Input";
 import { AiOutlineMail } from "react-icons/ai";
 import MessageError from "../../../../MessageError";
 import Button from "../../../Button";
+import { MdPassword } from "react-icons/md";
 
 interface LoginFormProps {
   register: UseFormRegister<FormAuthorisation>;
@@ -41,7 +42,7 @@ const LoginForm: FC<LoginFormProps> = ({ errors, isValid, register }) => {
       <ContainerInput>
         <Input
           placeholder="password"
-          Icon={AiOutlineMail}
+          Icon={MdPassword}
           type="password"
           config={{
             ...register("password", {
@@ -62,7 +63,7 @@ const LoginForm: FC<LoginFormProps> = ({ errors, isValid, register }) => {
         )}
       </ContainerInput>
       <ButtonCustom
-        bg="white"
+        variant="white"
         color="black"
         disabled={!isValid}>
         Авторизоваться
