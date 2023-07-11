@@ -2,6 +2,7 @@ import { FC } from "react";
 
 import Quote from "../Quote/Quote";
 import { Container } from "./style";
+import { QuoteCustomElement } from "../../../../../type/quote";
 
 interface QuotesProps {
   list: QuoteCustomElement[];

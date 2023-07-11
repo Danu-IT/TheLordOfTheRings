@@ -9,6 +9,7 @@ import { ContainerPage } from "../../../styles/layout";
 import { Quest, QuestList } from "./style";
 import { toast } from "react-toastify";
 import { toastInfo } from "../../../utils/data";
+import { FormRegistrasion } from "../../../type/form";
 
 const Register = () => {
   const navigate = useNavigate();

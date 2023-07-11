@@ -1,5 +1,6 @@
 import { collection, doc, getDocs, query, setDoc } from "firebase/firestore"
 import { db } from "."
+import { CharacterCustomElement } from "../type/character";
 
 export const saveItem = async (data: CharacterCustomElement[] | string[], id: string, directory: string) => {
     if (!id || !directory || !data) return false

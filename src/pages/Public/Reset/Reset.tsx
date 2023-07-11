@@ -9,6 +9,7 @@ import { toastInfo } from "../../../utils/data";
 import Form from "../../../components/UI/Form";
 import ResetForm from "../../../components/UI/Form/Components/ResetForm";
 import { Quest, QuestList } from "./style";
+import { FormReset } from "../../../type/form";
 
 const Reset = () => {
   const navigate = useNavigate();

@@ -1,4 +1,5 @@
 import { ToastOptions } from "react-toastify"
+import { DataRace, Toast } from "../type"
 
 export const arrayOfSorts = [
     { result: "asc", value: "По возрастанию" },

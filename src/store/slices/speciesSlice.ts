@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { userLoggedOut } from "./auth";
+import { CharacterCustom, CharacterCustomElement } from "../../type/character";
 
 interface authState {
     filterRace: string;

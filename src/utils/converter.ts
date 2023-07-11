@@ -1,3 +1,6 @@
+import { CharacterApi, CharacterApiElement, CharacterCustomElement } from "../type/character"
+import { QuoteApi, QuoteApiElement, QuoteCustomElement } from "../type/quote"
+
 /** Конвертация серверных данных под клиента */
 export const characterConverter = (response: CharacterApi): CharacterCustomElement[] => {
     const convetrData = response.docs.map((el: CharacterApiElement) => {

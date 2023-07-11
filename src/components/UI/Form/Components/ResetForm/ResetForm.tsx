@@ -2,9 +2,8 @@ import { UseFormRegister, FieldErrors } from "react-hook-form";
 import Input from "../../../Input";
 import MessageError from "../../../../MessageError";
 import { AiOutlineMail } from "react-icons/ai";
-import { styled } from "styled-components";
-import Button from "../../../Button";
 import { ButtonCustom, ContainerInput } from "./style";
+import { FormRegistrasion } from "../../../../../type/form";
 
 interface ResetFormProps {
   register: UseFormRegister<FormRegistrasion>;

@@ -1,8 +1,9 @@
-import { FC, SetStateAction } from "react";
+import { FC } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 
 import PaginationItem from "./components/PaginationItem";
 import { Arrow, Container, ContainerPages } from "./style";
+import { CharacterCustom } from "../../type/character";
 
 interface PaginationProps {
   info?: CharacterCustom;

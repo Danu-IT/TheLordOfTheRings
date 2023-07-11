@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 
 import { ringsAPI } from "../../../../../store/services/RingsService";
 import { Add, Container } from "./style";
+import { QuoteCustomElement } from "../../../../../type/quote";
 
 interface QuoteProps {
   item: QuoteCustomElement;

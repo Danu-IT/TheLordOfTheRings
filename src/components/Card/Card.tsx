@@ -10,6 +10,7 @@ import { useAppContext } from "../../hooks/useAppContext";
 import { Block, ButtonCard, Container, Info, Share } from "./style";
 import { Link } from "react-router-dom";
 import { BiLogoTelegram } from "react-icons/bi";
+import { CharacterCustomElement } from "../../type/character";
 
 interface CardProps {
   item: CharacterCustomElement;

@@ -6,6 +6,7 @@ import { AiOutlineMail } from "react-icons/ai";
 import Input from "../../../Input/Input";
 import MessageError from "../../../../MessageError";
 import { ButtonCustom, ContainerInput } from "./style";
+import { FormAuthorisation } from "../../../../../type/form";
 
 interface LoginFormProps {
   register: UseFormRegister<FormAuthorisation>;

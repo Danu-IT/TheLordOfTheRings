@@ -3,6 +3,7 @@ import Checkbox from "@mui/material/Checkbox";
 import { yellow } from "@mui/material/colors";
 
 import { Container } from "./style";
+import { DataRace } from "../../../../type";
 
 interface FilterItemProps {
   item: DataRace;

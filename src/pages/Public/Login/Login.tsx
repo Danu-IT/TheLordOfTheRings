@@ -18,6 +18,7 @@ import LoginForm from "../../../components/UI/Form/Components/LoginForm/LoginFor
 import { ContainerPage } from "../../../styles/layout";
 import { Quest, QuestList, Sign } from "./style";
 import { toastInfo } from "../../../utils/data";
+import { FormAuthorisation } from "../../../type/form";
 
 const Login = () => {
   const navigate = useNavigate();

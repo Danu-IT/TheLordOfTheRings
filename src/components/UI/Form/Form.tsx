@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { UseFormHandleSubmit } from "react-hook-form";
 
 import { Container, ContainerForm } from "./style";
+import { Forms } from "../../../type/form";
 
 interface FormProps {
   handleSubmit: UseFormHandleSubmit<Forms>;

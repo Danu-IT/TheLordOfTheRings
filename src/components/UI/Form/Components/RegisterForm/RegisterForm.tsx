@@ -6,6 +6,7 @@ import { MdPassword } from "react-icons/md";
 import Input from "../../../Input";
 import MessageError from "../../../../MessageError";
 import { ButtonCustom, ContainerInput } from "./style";
+import { FormRegistrasion } from "../../../../../type/form";
 
 interface RegisterFormProps {
   register: UseFormRegister<FormRegistrasion>;
