@@ -1,5 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { FcGoogle } from "react-icons/fc";
+import { BsFacebook } from "react-icons/bs";
+import { AiFillGithub } from "react-icons/ai";
+
 import { auth } from "../../../firebase";
 import {
   GoogleAuthProvider,
@@ -10,10 +14,8 @@ import { useAppDispatch } from "../../../hooks/redux";
 import { changeAuth } from "../../../store/slices/auth";
 import Form from "../../../components/UI/Form/Form";
 import LoginForm from "../../../components/UI/Form/Components/LoginForm/LoginForm";
-import { styled } from "styled-components";
-import { FcGoogle } from "react-icons/fc";
-import { BsFacebook } from "react-icons/bs";
-import { AiFillGithub } from "react-icons/ai";
+import { ContainerPage } from "../../../styles/layout";
+import { Quest, Sign } from "./style";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -36,9 +38,9 @@ const Login = () => {
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password);
       dispatch(changeAuth(true));
-      navigate("/");
-    } catch (e: any) {
+    } catch (e) {
     } finally {
+      navigate("/");
     }
     reset();
   };
@@ -48,50 +50,34 @@ const Login = () => {
     try {
       await signInWithPopup(auth, provider);
       dispatch(changeAuth(true));
-    } catch (e: any) {
+    } catch (e) {
     } finally {
       navigate("/");
     }
   };
 
   return (
-    <Form
-      handleSubmit={handleSubmit}
-      handlerSubmitCustom={handlerLogin}>
-      <LoginForm
-        register={register}
-        errors={errors}
-        isValid={isValid}></LoginForm>
-      <Sign>
-        or
-        <FcGoogle
-          onClick={handlerRegisterGoogle}
-          size={20}
-        />
-        <BsFacebook size={20} />
-        <AiFillGithub size={20} />
-      </Sign>
-      <Quest onClick={() => navigate("/register")}>Создать аккаунт</Quest>
-    </Form>
+    <ContainerPage>
+      <Form
+        handleSubmit={handleSubmit}
+        handlerSubmitCustom={handlerLogin}>
+        <LoginForm
+          register={register}
+          errors={errors}
+          isValid={isValid}></LoginForm>
+        <Sign>
+          or
+          <FcGoogle
+            onClick={handlerRegisterGoogle}
+            size={20}
+          />
+          <BsFacebook size={20} />
+          <AiFillGithub size={20} />
+        </Sign>
+        <Quest onClick={() => navigate("/register")}>Создать аккаунт</Quest>
+      </Form>
+    </ContainerPage>
   );
 };
-
-const Sign = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  & > * {
-    cursor: pointer;
-  }
-`;
-
-const Quest = styled.div`
-  font-size: 20px;
-  cursor: pointer;
-  &:hover {
-    color: yellow;
-  }
-`;
 
 export default Login;

@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { searchValue } from "../../../utils";
 import {
@@ -6,7 +8,6 @@ import {
   removeItemHistory,
 } from "../../../store/slices/speciesSlice";
 import { getAllCardItems } from "../../../firebase/change";
-import { useEffect } from "react";
 import {
   Container,
   ContainerPage,
@@ -19,6 +20,7 @@ import {
 
 const History = () => {
   const history = useAppSelector((state) => state.speciesSlice.history);
+
   const user = useAppSelector((state) => state.auth.user);
 
   const dispatch = useAppDispatch();

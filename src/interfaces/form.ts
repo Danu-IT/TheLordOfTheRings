@@ -1,10 +1,10 @@
-interface FormRegistrasion{
+interface FormRegistrasion {
     email: string;
     password: string;
-    cpassword: string;
+    cpassword?: string;
 }
 
-interface FormAuthorisation{
+interface FormAuthorisation {
     email: string;
     password: string;
 }

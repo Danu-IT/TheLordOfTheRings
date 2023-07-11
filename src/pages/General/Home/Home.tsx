@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
 import {
   createSearchParams,
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
 
-import { ringsAPI } from "../../../services/RingsService";
+import { ringsAPI } from "../../../store/services/RingsService";
 import Card from "../../../components/Card/Card";
 import Pagination from "../../../components/Pagination";
 import Search from "../../../components/Search/Search";
@@ -21,13 +20,14 @@ import Modal from "../../../components/Modal";
 import HelpContent from "../../../components/Modal/components/HelpContent";
 import ViewCardsSwitch from "../../../components/ViewCardsSwitch/ViewCardsSwitch";
 import { useAppContext } from "../../../hooks/useAppContext";
+import { Cards, Center, ContainerCustom, Title, UserControl } from "./style";
 
 const Home = () => {
   const [searchParams] = useSearchParams();
 
   const pageQuery = searchParams.get("page") || "1";
   const searchQuery = searchParams.get("search") || "";
-  const sortQuery = searchParams.get("sort") || "";
+  const sortQuery = searchParams.get("sort") || "asc";
 
   const { regularСardType } = useAppContext();
 
@@ -82,7 +82,7 @@ const Home = () => {
   }, [search, setSeacrh, sort, setSort, filterRace]);
 
   return (
-    <Container>
+    <ContainerCustom>
       <UserControl>
         <Search
           searchValue={search}
@@ -126,39 +126,8 @@ const Home = () => {
           info={data}
         />
       )}
-    </Container>
+    </ContainerCustom>
   );
 };
-
-interface HomeStyleProps {
-  view?: boolean;
-}
-
-const Container = styled.div`
-  max-width: 1350px;
-  margin: 10px auto;
-  display: flex;
-  flex-direction: column;
-`;
-
-export const Cards = styled.div<HomeStyleProps>`
-  display: flex;
-  flex-wrap: wrap;
-  flex: 1;
-  gap: ${({ view }) => (view ? "10px" : "20px")};
-  margin: 40px 30px;
-`;
-
-const UserControl = styled.div`
-  display: flex;
-  justify-content: space-around;
-`;
-
-const Center = styled.div`
-  display: flex;
-  align-items: baseline;
-`;
-
-const Title = styled.h2``;
 
 export default Home;

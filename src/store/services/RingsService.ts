@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
-import { characterConverter, quoteConverter } from "../utils";
+import { characterConverter, quoteConverter } from "../../utils/converter";
 
 export const ringsAPI = createApi({
     reducerPath: "ringsAPI",

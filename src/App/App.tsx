@@ -1,4 +1,5 @@
 import { onAuthStateChanged } from "firebase/auth";
+
 import Header from "../components/Header/Header";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import Home from "../pages/General/Home";

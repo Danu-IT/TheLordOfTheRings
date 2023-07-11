@@ -1,9 +1,10 @@
 import { FC } from "react";
 import { styled } from "styled-components";
+
 interface PaginationItemProps {
   children: React.ReactNode;
   current: boolean;
-  onClick: (item: any) => void;
+  onClick: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const PaginationItem: FC<PaginationItemProps> = ({
@@ -13,7 +14,7 @@ const PaginationItem: FC<PaginationItemProps> = ({
 }) => {
   return (
     <Container
-      onClick={onClick}
+      onClick={() => onClick}
       current={current}>
       {children}
     </Container>

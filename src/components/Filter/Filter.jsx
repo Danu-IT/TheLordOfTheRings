@@ -1,6 +1,7 @@
-import { styled } from "styled-components";
-import FilterItem from "./components/FilterItem";
 import PropTypes from "prop-types";
+
+import FilterItem from "./components/FilterItem";
+import { Container, ListFilter } from "./style";
 
 const Filter = ({ options, title, setOptions }) => {
   const changeOptions = (value) => {
@@ -28,18 +29,6 @@ const Filter = ({ options, title, setOptions }) => {
     </Container>
   );
 };
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 150px;
-`;
-
-const ListFilter = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-`;
 
 export default Filter;
 

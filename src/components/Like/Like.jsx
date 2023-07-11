@@ -1,6 +1,7 @@
 import { AiFillHeart } from "react-icons/ai";
-import { styled } from "styled-components";
 import PropTypes from "prop-types";
+
+import { Container } from "./style";
 
 const Like = ({ isLike, onClick }) => {
   return (
@@ -17,12 +18,5 @@ Like.propTypes = {
   isLike: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
 };
-
-const Container = styled.div`
-  position: absolute;
-  right: 5px;
-  top: 2px;
-  cursor: pointer;
-`;
 
 export default Like;

@@ -1,4 +1,4 @@
-import { ringsAPI } from '../../services/RingsService';
+import { ringsAPI } from '../services/RingsService';
 import auth from './auth';
 import speciesSlice from './speciesSlice';
 import interfaceСhange from './interfaceСhange'

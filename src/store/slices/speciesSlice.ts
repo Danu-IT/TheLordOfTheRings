@@ -1,6 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { userLoggedOut } from "./auth";
-import { saveItem } from "../../firebase/change";
 
 interface authState {
     filterRace: string;

@@ -1,4 +1,5 @@
 import { Component, ErrorInfo, ReactNode } from "react";
+
 import NotFound from "../../pages/General/NotFound/NotFound";
 
 interface Props {

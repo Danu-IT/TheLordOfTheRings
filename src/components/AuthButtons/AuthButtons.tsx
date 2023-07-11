@@ -1,7 +1,7 @@
-import Button from "../UI/Button";
-
 import { useNavigate } from "react-router-dom";
-import { styled } from "styled-components";
+
+import Button from "../UI/Button";
+import { Container } from "./style";
 
 const AuthButtons = () => {
   const navigate = useNavigate();
@@ -23,11 +23,5 @@ const AuthButtons = () => {
     </Container>
   );
 };
-
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 20px;
-`;
 
 export default AuthButtons;

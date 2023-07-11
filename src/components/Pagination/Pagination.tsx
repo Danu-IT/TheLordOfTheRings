@@ -1,13 +1,13 @@
-import { styled } from "styled-components";
-import { FC } from "react";
+import { FC, SetStateAction } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 
 import PaginationItem from "./components/PaginationItem";
+import { Arrow, Container, ContainerPages } from "./style";
 
 interface PaginationProps {
   info?: CharacterCustom;
   pageState: number;
-  setPageState: (item: number) => void;
+  setPageState: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Pagination: FC<PaginationProps> = ({ info, pageState, setPageState }) => {
@@ -25,7 +25,7 @@ const Pagination: FC<PaginationProps> = ({ info, pageState, setPageState }) => {
           Array.from(Array(info.pages).keys()).map((el) => (
             <PaginationItem
               onClick={() => setPageState(el + 1)}
-              current={el + 1 == pageState ? true : false}>
+              current={el + 1 === pageState ? true : false}>
               {el + 1}
             </PaginationItem>
           ))}
@@ -36,25 +36,5 @@ const Pagination: FC<PaginationProps> = ({ info, pageState, setPageState }) => {
     </Container>
   );
 };
-
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  justify-content: center;
-`;
-
-const ContainerPages = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  justify-content: center;
-`;
-const Arrow = styled.div`
-  cursor: pointer;
-  &:hover {
-    color: yellow;
-  }
-`;
 
 export default Pagination;

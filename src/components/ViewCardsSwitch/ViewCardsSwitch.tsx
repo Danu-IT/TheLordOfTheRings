@@ -1,10 +1,14 @@
 import { BsViewStacked } from "react-icons/bs";
 import { TfiViewGrid } from "react-icons/tfi";
-import { styled } from "styled-components";
+import { useEffect } from "react";
+
 import { useAppContext } from "../../hooks/useAppContext";
+import { Container } from "./style";
 
 const ViewCardsSwitch = () => {
   const { regularСardType, setRegularСardType } = useAppContext();
+
+  useEffect(() => () => setRegularСardType(true), []);
 
   return (
     <Container>
@@ -20,15 +24,5 @@ const ViewCardsSwitch = () => {
     </Container>
   );
 };
-
-const Container = styled.div`
-  align-self: end;
-  display: flex;
-  gap: 15px;
-  margin-right: 70px;
-  & > * {
-    cursor: pointer;
-  }
-`;
 
 export default ViewCardsSwitch;

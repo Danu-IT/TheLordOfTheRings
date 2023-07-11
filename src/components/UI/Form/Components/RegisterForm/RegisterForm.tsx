@@ -1,11 +1,11 @@
 import { FC } from "react";
-import { styled } from "styled-components";
-import Input from "../../../Input";
 import { AiOutlineMail } from "react-icons/ai";
-import MessageError from "../../../../MessageError";
-import Button from "../../../Button";
 import { UseFormRegister, FieldErrors } from "react-hook-form";
 import { MdPassword } from "react-icons/md";
+
+import Input from "../../../Input";
+import MessageError from "../../../../MessageError";
+import { ButtonCustom, ContainerInput } from "./style";
 
 interface RegisterFormProps {
   register: UseFormRegister<FormRegistrasion>;
@@ -94,14 +94,5 @@ const RegisterForm: FC<RegisterFormProps> = ({ register, errors, isValid }) => {
     </>
   );
 };
-
-const ContainerInput = styled.div`
-  position: relative;
-  width: 340px;
-`;
-
-const ButtonCustom = styled(Button)`
-  margin-left: 45px;
-`;
 
 export default RegisterForm;

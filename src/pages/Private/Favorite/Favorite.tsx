@@ -1,8 +1,10 @@
-import { styled } from "styled-components";
-import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
-import { Cards } from "../../General/Home/Home";
-import Card from "../../../components/Card/Card";
 import { useNavigate } from "react-router-dom";
+
+import { useAppSelector } from "../../../hooks/redux";
+import { Cards } from "../../General/Home/style";
+import Card from "../../../components/Card/Card";
+import { ContainerPage } from "../../../styles/layout";
+import { Title } from "./style";
 
 const Favorite = () => {
   const navigate = useNavigate();
@@ -10,7 +12,7 @@ const Favorite = () => {
   const { favorites } = useAppSelector((state) => state.speciesSlice);
 
   return (
-    <Container>
+    <ContainerPage>
       <Title>Избранное</Title>
       <Cards>
         {favorites &&
@@ -21,16 +23,8 @@ const Favorite = () => {
               key={el.id}></Card>
           ))}
       </Cards>
-    </Container>
+    </ContainerPage>
   );
 };
-
-const Container = styled.div`
-  max-width: 1350px;
-  padding: 0 10px;
-  margin: 10px auto;
-`;
-
-const Title = styled.h1``;
 
 export default Favorite;

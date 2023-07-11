@@ -1,7 +1,8 @@
-import { styled } from "styled-components";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { yellow } from "@mui/material/colors";
+
+import { Container } from "./style";
 
 interface FilterItemProps {
   item: DataRace;
@@ -29,9 +30,5 @@ const FilterItem = ({ item, onChange }: FilterItemProps) => {
     </Container>
   );
 };
-
-const Container = styled.div`
-  display: flex;
-`;
 
 export default FilterItem;

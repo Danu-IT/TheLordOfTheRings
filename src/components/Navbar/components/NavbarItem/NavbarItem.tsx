@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
+
 import { IRoute } from "../../../../routes";
-import { styled } from "styled-components";
+import { Container } from "./style";
 
 interface NavbarItemProps {
   item: IRoute;
@@ -17,16 +18,4 @@ const NavbarItem = ({ item }: NavbarItemProps) => {
     </Container>
   );
 };
-
-interface NavbarItemStyleProps {
-  view: boolean;
-}
-
-const Container = styled.div<NavbarItemStyleProps>`
-  color: ${({ view }) => (view ? "yellow" : "white")};
-  cursor: pointer;
-  &:hover {
-    opacity: 0.7;
-  }
-`;
 export default NavbarItem;

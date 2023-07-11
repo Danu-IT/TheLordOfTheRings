@@ -1,5 +1,5 @@
-import { styled } from "styled-components";
 import AuthButtons from "../../../AuthButtons/AuthButtons";
+import { Container, Title } from "./style";
 
 const HelpContent = ({}) => {
   return (
@@ -11,16 +11,5 @@ const HelpContent = ({}) => {
     </Container>
   );
 };
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-`;
-
-const Title = styled.h3`
-  text-align: center;
-`;
 
 export default HelpContent;

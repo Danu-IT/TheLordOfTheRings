@@ -12,7 +12,7 @@ import {
 import storage from 'redux-persist/lib/storage'
 
 import slices from './slices';
-import { ringsAPI } from "../services/RingsService";
+import { ringsAPI } from "./services/RingsService";
 
 const persistConfig = {
     key: 'root',

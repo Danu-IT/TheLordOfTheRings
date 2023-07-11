@@ -1,6 +1,6 @@
-import { styled } from "styled-components";
 import { IRoute } from "../../routes";
 import NavbarItem from "./components/NavbarItem";
+import { Container } from "./style";
 
 interface NavbarProps {
   list: IRoute[];
@@ -15,10 +15,5 @@ const Navbar = ({ list }: NavbarProps) => {
     </Container>
   );
 };
-
-const Container = styled.div`
-  display: flex;
-  gap: 25px;
-`;
 
 export default Navbar;

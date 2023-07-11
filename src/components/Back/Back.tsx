@@ -1,6 +1,7 @@
 import { BiArrowBack } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
-import { styled } from "styled-components";
+
+import { Container } from "./style";
 
 const Back = () => {
   const navigate = useNavigate();
@@ -10,14 +11,5 @@ const Back = () => {
     </Container>
   );
 };
-
-const Container = styled.div`
-  position: absolute;
-  top: 10px;
-  cursor: pointer;
-  &:hover {
-    opacity: 0.8;
-  }
-`;
 
 export default Back;

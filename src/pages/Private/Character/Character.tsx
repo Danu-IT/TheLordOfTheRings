@@ -1,8 +1,19 @@
 import { useParams } from "react-router-dom";
-import { ringsAPI } from "../../../services/RingsService";
+
+import { ringsAPI } from "../../../store/services/RingsService";
 import Back from "../../../components/Back";
-import { styled } from "styled-components";
 import Quotes from "./components/Quotes";
+import {
+  Container,
+  Content,
+  Info,
+  Left,
+  Name,
+  Param,
+  ParamTitle,
+  Right,
+  Title,
+} from "./style";
 
 const Character = () => {
   const idCharacter = useParams().id || "";
@@ -57,45 +68,5 @@ const Character = () => {
     </Container>
   );
 };
-
-const Container = styled.div`
-  position: relative;
-  max-width: 1350px;
-  padding: 0 10px;
-  margin: 10px auto;
-`;
-const Content = styled.div`
-  padding-top: 50px;
-  display: flex;
-  gap: 20px;
-`;
-const Name = styled.div`
-  font-size: 50px;
-  text-align: center;
-`;
-const Left = styled.div`
-  width: 70%;
-`;
-const Right = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 30%;
-  gap: 10px;
-`;
-const Title = styled.h3`
-  text-decoration: underline;
-`;
-const Param = styled.div`
-  display: flex;
-  gap: 20px;
-`;
-
-const ParamTitle = styled.div`
-  font-weight: bold;
-  width: 70px;
-`;
-const Info = styled.div`
-  align-self: center;
-`;
 
 export default Character;

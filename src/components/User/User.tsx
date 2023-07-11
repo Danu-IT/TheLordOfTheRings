@@ -1,9 +1,9 @@
+import { FC } from "react";
+import { FaRegUserCircle } from "react-icons/fa";
+
 import { useAppSelector } from "../../hooks/redux";
 import { sliceEmail } from "../../utils";
-
-import { styled } from "styled-components";
-import { FaRegUserCircle } from "react-icons/fa";
-import { FC } from "react";
+import { Container, Image, UserFull } from "./style";
 
 interface UserProps {
   onClick: () => void;
@@ -35,18 +35,5 @@ const User: FC<UserProps> = ({ onClick }) => {
     </Container>
   );
 };
-
-const Container = styled.div`
-  margin-right: 100px;
-`;
-const Image = styled.img`
-  border-radius: 50%;
-  width: 50px;
-`;
-const UserFull = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-`;
 
 export default User;

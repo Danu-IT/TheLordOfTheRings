@@ -1,7 +1,7 @@
-import LogoPng from "../../assets/logo.png";
-
-import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
+
+import LogoPng from "../../assets/logo.png";
+import { Container, LogoPic } from "./style";
 
 const Logo = () => {
   const navigate = useNavigate();
@@ -14,17 +14,5 @@ const Logo = () => {
     </Container>
   );
 };
-
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-`;
-const LogoPic = styled.img`
-  width: 30px;
-  height: 30px;
-  object-fit: cover;
-`;
 
 export default Logo;

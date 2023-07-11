@@ -1,10 +1,11 @@
 import React, { FC } from "react";
-import { styled } from "styled-components";
 import { UseFormHandleSubmit } from "react-hook-form";
 
+import { Container, ContainerForm } from "./style";
+
 interface FormProps {
-  handleSubmit: UseFormHandleSubmit<any>;
-  handlerSubmitCustom: (data: any) => void;
+  handleSubmit: UseFormHandleSubmit<FormRegistrasion | FormAuthorisation>;
+  handlerSubmitCustom: (data: FormRegistrasion | FormAuthorisation) => void;
   children: React.ReactNode;
 }
 
@@ -19,16 +20,5 @@ const Form: FC<FormProps> = ({
     </Container>
   );
 };
-
-const Container = styled.div``;
-
-const ContainerForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-  margin-top: 100px;
-`;
 
 export default Form;

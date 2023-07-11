@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import Quote from "../Quote/Quote";
-import { styled } from "styled-components";
+import { Container } from "./style";
 
 interface QuotesProps {
   list: QuoteCustomElement[];
@@ -16,11 +16,5 @@ const Quotes: FC<QuotesProps> = ({ list }) => {
     </Container>
   );
 };
-
-const Container = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-`;
 
 export default Quotes;

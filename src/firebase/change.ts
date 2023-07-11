@@ -1,4 +1,4 @@
-import { collection, doc, getDocs, query, setDoc, where } from "firebase/firestore"
+import { collection, doc, getDocs, query, setDoc } from "firebase/firestore"
 import { db } from "."
 
 export const saveItem = async (data: CharacterCustomElement[] | string[], id: string | null, directory: string) => {

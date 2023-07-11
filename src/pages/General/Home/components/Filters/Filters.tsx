@@ -1,9 +1,10 @@
 import { useSearchParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+
 import Filter from "../../../../../components/Filter";
 import { useAppDispatch } from "../../../../../hooks/redux";
 import { changeFilterRace } from "../../../../../store/slices/speciesSlice";
 import { arrayRace } from "../../../../../utils/data";
-import { useState, useEffect } from "react";
 
 const Filters = () => {
   const [searchParams] = useSearchParams();

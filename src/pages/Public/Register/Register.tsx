@@ -1,10 +1,12 @@
 import { useForm } from "react-hook-form";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../firebase";
 import { useNavigate } from "react-router-dom";
+
+import { auth } from "../../../firebase";
 import Form from "../../../components/UI/Form";
 import RegisterForm from "../../../components/UI/Form/Components/RegisterForm";
-import { styled } from "styled-components";
+import { ContainerPage } from "../../../styles/layout";
+import { Quest } from "./style";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -25,36 +27,31 @@ const Register = () => {
 
   const handlerSubmit = async (data: FormRegistrasion) => {
     if (data.cpassword !== data.password) {
-      return false;
+      return;
     }
     try {
       await createUserWithEmailAndPassword(auth, data.email, data.password);
-    } catch (e: any) {
+    } catch (e) {
     } finally {
       navigate("/login");
     }
     reset();
   };
+
   return (
-    <Form
-      handleSubmit={handleSubmit}
-      handlerSubmitCustom={handlerSubmit}>
-      <RegisterForm
-        register={register}
-        errors={errors}
-        isValid={isValid}
-      />
-      <Quest onClick={() => navigate("/login")}>Аккаунт уже создан?</Quest>
-    </Form>
+    <ContainerPage>
+      <Form
+        handleSubmit={handleSubmit}
+        handlerSubmitCustom={handlerSubmit}>
+        <RegisterForm
+          register={register}
+          errors={errors}
+          isValid={isValid}
+        />
+        <Quest onClick={() => navigate("/login")}>Аккаунт уже создан?</Quest>
+      </Form>
+    </ContainerPage>
   );
 };
-
-const Quest = styled.div`
-  font-size: 20px;
-  cursor: pointer;
-  &:hover {
-    color: yellow;
-  }
-`;
 
 export default Register;
