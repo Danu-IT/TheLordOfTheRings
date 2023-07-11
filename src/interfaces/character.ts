@@ -1,11 +1,11 @@
-interface CharacterApi {
+export interface CharacterApi {
     docs: CharacterApiElement[];
     limit: number;
     page: number;
     pages: number;
 }
 
-interface CharacterApiElement {
+export interface CharacterApiElement {
     _id: string;
     birth: string;
     death: string;
@@ -18,14 +18,14 @@ interface CharacterApiElement {
     wikiUrl: string;
 }
 
-interface CharacterCustom {
+export interface CharacterCustom {
     docs: CharacterCustomElement[];
     limit: number;
     page: number;
     pages: number;
 }
 
-interface CharacterCustomElement {
+export interface CharacterCustomElement {
     id: string;
     birth: string;
     death: string;

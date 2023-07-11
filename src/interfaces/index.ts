@@ -1,10 +1,10 @@
-interface DataRace {
+export interface DataRace {
     value: string,
     active: boolean
     id: number;
 }
 
-interface Toast {
+export interface Toast {
     position: string,
     autoClose: number,
     hideProgressBar: boolean,

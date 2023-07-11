@@ -1,16 +1,16 @@
-interface FormRegistrasion {
+export interface FormRegistrasion {
     email: string;
     password?: string;
     cpassword?: string;
 }
 
-interface FormAuthorisation {
+export interface FormAuthorisation {
     email: string;
     password?: string;
 }
 
-interface FormReset {
+export interface FormReset {
     email: string;
 }
 
-type Forms = FormRegistrasion | FormAuthorisation | FormReset
+export type Forms = FormRegistrasion | FormAuthorisation | FormReset

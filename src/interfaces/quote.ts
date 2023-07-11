@@ -1,19 +1,19 @@
-interface QuoteApi {
-    docs: QuoteApiElement [];
+export interface QuoteApi {
+    docs: QuoteApiElement[];
 }
 
-interface QuoteApiElement {
+export interface QuoteApiElement {
     _id: string;
     dialog: string;
     movie: string;
     character: string;
 }
 
-interface QuoteCustom {
-    docs: QuoteCustomElement [];
+export interface QuoteCustom {
+    docs: QuoteCustomElement[];
 }
 
-interface QuoteCustomElement {
+export interface QuoteCustomElement {
     id: string;
     dialog: string;
     movie: string;

@@ -1,7 +1,7 @@
-interface MovieApi {
-    docs: MovieApiElement [];
+export interface MovieApi {
+    docs: MovieApiElement[];
 }
 
-interface MovieApiElement {
+export interface MovieApiElement {
     name: string;
 }

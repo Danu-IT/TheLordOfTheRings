@@ -8,6 +8,7 @@ import { changeUser, userLoggedOut } from "../store/slices/auth";
 import { auth } from "../firebase";
 import { AppProvider } from "../context";
 import Router from "../components/Router";
+import { baseUrl } from "../constants/url";
 
 const App = () => {
   const [regularСardType, setRegularСardType] = useState(true);
@@ -24,9 +25,7 @@ const App = () => {
 
   const fetchTelegramFlag = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:5000/api/feature-flags"
-      );
+      const response = await axios.get(`${baseUrl}/api/feature-flags`);
       setIsFeatureFlag(response.data.isTelegramShareEnabled);
     } catch (e) {
       if (e) setIsFeatureFlag(false);
