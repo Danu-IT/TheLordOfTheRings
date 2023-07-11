@@ -1,10 +1,13 @@
 import ReactDOM from "react-dom/client";
-import "./styles/index.css";
-import App from "./App/App";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Provider } from "react-redux";
-import { setupStore } from "./store";
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
+
+import "./styles/index.css";
+import App from "./App/App";
+import { setupStore } from "./store";
 import ErrorBoundary from "./components/ErrorBoundary";
 
 const store = setupStore();
@@ -20,5 +23,6 @@ root.render(
         <App />
       </PersistGate>
     </Provider>
+    <ToastContainer />
   </ErrorBoundary>
 );

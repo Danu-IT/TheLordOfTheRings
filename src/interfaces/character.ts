@@ -1,5 +1,5 @@
 interface CharacterApi {
-    docs: CharacterApiElement [];
+    docs: CharacterApiElement[];
     limit: number;
     page: number;
     pages: number;
@@ -19,7 +19,7 @@ interface CharacterApiElement {
 }
 
 interface CharacterCustom {
-    docs: CharacterCustomElement [];
+    docs: CharacterCustomElement[];
     limit: number;
     page: number;
     pages: number;

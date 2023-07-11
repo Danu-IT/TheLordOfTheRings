@@ -4,8 +4,8 @@ import { UseFormHandleSubmit } from "react-hook-form";
 import { Container, ContainerForm } from "./style";
 
 interface FormProps {
-  handleSubmit: UseFormHandleSubmit<FormRegistrasion | FormAuthorisation>;
-  handlerSubmitCustom: (data: FormRegistrasion | FormAuthorisation) => void;
+  handleSubmit: UseFormHandleSubmit<Forms>;
+  handlerSubmitCustom: (data: Forms) => void;
   children: React.ReactNode;
 }
 

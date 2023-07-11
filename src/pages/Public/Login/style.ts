@@ -17,3 +17,8 @@ export const Quest = styled.div`
     color: yellow;
   }
 `;
+
+export const QuestList = styled.div`
+  display: flex;
+  gap: 15px;
+`;

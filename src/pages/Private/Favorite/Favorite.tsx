@@ -9,8 +9,7 @@ import { Title } from "./style";
 const Favorite = () => {
   const navigate = useNavigate();
 
-  const { favorites } = useAppSelector((state) => state.speciesSlice);
-
+  const favorites = useAppSelector((state) => state.speciesSlice.favorites);
   return (
     <ContainerPage>
       <Title>Избранное</Title>

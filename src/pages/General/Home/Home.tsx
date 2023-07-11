@@ -6,10 +6,10 @@ import {
 } from "react-router-dom";
 
 import { ringsAPI } from "../../../store/services/RingsService";
-import Card from "../../../components/Card/Card";
+import Card from "../../../components/Card";
 import Pagination from "../../../components/Pagination";
-import Search from "../../../components/Search/Search";
-import Sort from "../../../components/Sort/Sort";
+import Search from "../../../components/Search";
+import Sort from "../../../components/Sort";
 import Filters from "./components/Filters";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import {
@@ -18,9 +18,10 @@ import {
 } from "../../../store/slices/speciesSlice";
 import Modal from "../../../components/Modal";
 import HelpContent from "../../../components/Modal/components/HelpContent";
-import ViewCardsSwitch from "../../../components/ViewCardsSwitch/ViewCardsSwitch";
+import ViewCardsSwitch from "../../../components/ViewCardsSwitch";
 import { useAppContext } from "../../../hooks/useAppContext";
 import { Cards, Center, ContainerCustom, Title, UserControl } from "./style";
+import Loader from "../../../components/Loader";
 
 const Home = () => {
   const [searchParams] = useSearchParams();
@@ -43,7 +44,7 @@ const Home = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { data: ringsData } = ringsAPI.useGetCharactersQuery({
+  const { data: ringsData, isLoading } = ringsAPI.useGetCharactersQuery({
     page: pageState,
     name: search,
     sort: sort,
@@ -83,6 +84,7 @@ const Home = () => {
 
   return (
     <ContainerCustom>
+      {isLoading && <Loader />}
       <UserControl>
         <Search
           searchValue={search}

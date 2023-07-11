@@ -2,7 +2,7 @@ import { collection, doc, getDocs, query, setDoc } from "firebase/firestore"
 import { db } from "."
 
 export const saveItem = async (data: CharacterCustomElement[] | string[], id: string | null, directory: string) => {
-    if (!id) return false
+    if (!id || data || directory) return false
     await setDoc(doc(db, directory, id), { docs: data }, { merge: true });
 }
 

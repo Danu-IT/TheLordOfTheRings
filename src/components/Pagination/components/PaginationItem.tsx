@@ -1,10 +1,10 @@
-import { FC } from "react";
+import { FC, MouseEventHandler } from "react";
 import { styled } from "styled-components";
 
 interface PaginationItemProps {
   children: React.ReactNode;
   current: boolean;
-  onClick: React.Dispatch<React.SetStateAction<number>>;
+  onClick: MouseEventHandler<HTMLDivElement>;
 }
 
 const PaginationItem: FC<PaginationItemProps> = ({
@@ -14,7 +14,7 @@ const PaginationItem: FC<PaginationItemProps> = ({
 }) => {
   return (
     <Container
-      onClick={() => onClick}
+      onClick={onClick}
       current={current}>
       {children}
     </Container>

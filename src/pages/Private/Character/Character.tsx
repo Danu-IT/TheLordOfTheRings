@@ -14,15 +14,21 @@ import {
   Right,
   Title,
 } from "./style";
+import Loader from "../../../components/Loader";
 
 const Character = () => {
   const idCharacter = useParams().id || "";
 
   const { data } = ringsAPI.useGetCharacterQuery(idCharacter);
-  const { data: dataQuote } = ringsAPI.useGetCharacterQuotQuery(idCharacter);
+  const { data: dataQuote, isLoading } =
+    ringsAPI.useGetCharacterQuotQuery(idCharacter);
 
   const character = data?.docs[0];
   const characterQuote = dataQuote?.docs.slice(0, 30);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <Container>

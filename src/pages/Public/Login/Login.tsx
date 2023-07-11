@@ -3,19 +3,21 @@ import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
 import { AiFillGithub } from "react-icons/ai";
-
-import { auth } from "../../../firebase";
 import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth";
+import { toast } from "react-toastify";
+
+import { auth } from "../../../firebase";
 import { useAppDispatch } from "../../../hooks/redux";
 import { changeAuth } from "../../../store/slices/auth";
 import Form from "../../../components/UI/Form/Form";
 import LoginForm from "../../../components/UI/Form/Components/LoginForm/LoginForm";
 import { ContainerPage } from "../../../styles/layout";
-import { Quest, Sign } from "./style";
+import { Quest, QuestList, Sign } from "./style";
+import { toastInfo } from "../../../utils/data";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -35,12 +37,14 @@ const Login = () => {
   });
 
   const handlerLogin = async (data: FormAuthorisation) => {
+    if (!data.password) return;
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password);
       dispatch(changeAuth(true));
-    } catch (e) {
-    } finally {
+      toast.success("Вы успешно авторизовались!", toastInfo);
       navigate("/");
+    } catch (e) {
+      toast.error("Ошибка авторизации", toastInfo);
     }
     reset();
   };
@@ -50,9 +54,10 @@ const Login = () => {
     try {
       await signInWithPopup(auth, provider);
       dispatch(changeAuth(true));
-    } catch (e) {
-    } finally {
+      toast.success("Вы успешно авторизовались!", toastInfo);
       navigate("/");
+    } catch (e) {
+      toast.error("Ошибка авторизации", toastInfo);
     }
   };
 
@@ -74,7 +79,10 @@ const Login = () => {
           <BsFacebook size={20} />
           <AiFillGithub size={20} />
         </Sign>
-        <Quest onClick={() => navigate("/register")}>Создать аккаунт</Quest>
+        <QuestList>
+          <Quest onClick={() => navigate("/register")}>Создать аккаунт!</Quest>
+          <Quest onClick={() => navigate("/reset")}>Забыли пароль?</Quest>
+        </QuestList>
       </Form>
     </ContainerPage>
   );

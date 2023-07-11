@@ -5,4 +5,8 @@ export const Container = styled.div`
   right: 5px;
   top: 2px;
   cursor: pointer;
+  transition: transform 0.25s ease;
+  &:active{
+    transform: scale(1.2);
+  }
 `;

@@ -1,8 +1,8 @@
 import { styled } from "styled-components";
 
 export interface CardStyleProps {
-    isModalHelp?: boolean | undefined;
-    view?: boolean;
+  isModalHelp?: boolean | undefined;
+  view?: boolean;
 }
 
 export const Container = styled.div<CardStyleProps>`
@@ -15,9 +15,10 @@ export const Container = styled.div<CardStyleProps>`
     flex-direction: column;
     justify-content: space-between;
     gap: 10px;
+    height: 190px;
     overflow: auto;
     position: relative;
-  `;
+`;
 
 export const Block = styled.div`
     & > span {
@@ -25,11 +26,17 @@ export const Block = styled.div`
       font-weight: bold;
       font-style: italic;
     }
-  `;
+`;
 export const Info = styled.div``;
 
 export const ButtonCard = styled.div<CardStyleProps>`
     align-self: center;
     position: relative;
     z-index: ${({ isModalHelp }) => (isModalHelp ? "-2" : "")};
-  `;
+`;
+
+export const Share = styled.div`
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+`;

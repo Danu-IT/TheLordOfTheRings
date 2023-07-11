@@ -28,10 +28,6 @@ const RegisterForm: FC<RegisterFormProps> = ({ register, errors, isValid }) => {
                 value: 5,
                 message: "Минимум 5 символов",
               },
-              maxLength: {
-                value: 20,
-                message: "Максимум 20 символов",
-              },
             }),
           }}
         />

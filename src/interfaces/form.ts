@@ -1,10 +1,16 @@
 interface FormRegistrasion {
     email: string;
-    password: string;
+    password?: string;
     cpassword?: string;
 }
 
 interface FormAuthorisation {
     email: string;
-    password: string;
+    password?: string;
 }
+
+interface FormReset {
+    email: string;
+}
+
+type Forms = FormRegistrasion | FormAuthorisation | FormReset

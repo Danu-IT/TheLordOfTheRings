@@ -1,20 +1,17 @@
 import { onAuthStateChanged } from "firebase/auth";
+import { AnimatePresence } from "framer-motion";
+import axios from "axios";
 
-import Header from "../components/Header/Header";
-import { useAppDispatch, useAppSelector } from "../hooks/redux";
-import Home from "../pages/General/Home";
-import { privateRoutes, publicRoutes } from "../routes";
-import { Suspense, useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useAppDispatch } from "../hooks/redux";
+import { useEffect, useState } from "react";
 import { changeUser, userLoggedOut } from "../store/slices/auth";
 import { auth } from "../firebase";
 import { AppProvider } from "../context";
+import Router from "../components/Router";
 
 const App = () => {
   const [regularСardType, setRegularСardType] = useState(true);
-
-  const { isAuth } = useAppSelector((state) => state.auth);
-
+  const [isFeatureFlag, setIsFeatureFlag] = useState(false);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -25,38 +22,25 @@ const App = () => {
     return unsubscribe;
   }, []);
 
+  const fetchTelegramFlag = async () => {
+    const response = await axios.get("http://localhost:5000/api/feature-flags");
+    setIsFeatureFlag(response.data.isTelegramShareEnabled);
+  };
+
+  useEffect(() => {
+    fetchTelegramFlag();
+  }, []);
+
   return (
     <AppProvider
       value={{
+        isFeatureFlag: isFeatureFlag,
         regularСardType: regularСardType,
         setRegularСardType: setRegularСardType,
       }}>
-      <BrowserRouter>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Header />
-          <Routes>
-            {isAuth
-              ? privateRoutes.map((route) => (
-                  <Route
-                    key={route.path}
-                    path={route.path}
-                    element={<route.component />}
-                  />
-                ))
-              : publicRoutes.map((route) => (
-                  <Route
-                    key={route.path}
-                    path={route.path}
-                    element={<route.component />}
-                  />
-                ))}
-            <Route
-              path="*"
-              element={<Home />}
-            />
-          </Routes>
-        </Suspense>
-      </BrowserRouter>
+      <AnimatePresence>
+        <Router />
+      </AnimatePresence>
     </AppProvider>
   );
 };

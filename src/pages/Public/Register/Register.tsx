@@ -6,7 +6,9 @@ import { auth } from "../../../firebase";
 import Form from "../../../components/UI/Form";
 import RegisterForm from "../../../components/UI/Form/Components/RegisterForm";
 import { ContainerPage } from "../../../styles/layout";
-import { Quest } from "./style";
+import { Quest, QuestList } from "./style";
+import { toast } from "react-toastify";
+import { toastInfo } from "../../../utils/data";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -25,15 +27,17 @@ const Register = () => {
     mode: "onBlur",
   });
 
-  const handlerSubmit = async (data: FormRegistrasion) => {
+  const handlerRegister = async (data: FormRegistrasion) => {
     if (data.cpassword !== data.password) {
       return;
     }
+    if (!data.password) return;
     try {
       await createUserWithEmailAndPassword(auth, data.email, data.password);
-    } catch (e) {
-    } finally {
+      toast.success("Вы успешно зарегистрировались!", toastInfo);
       navigate("/login");
+    } catch (e) {
+      toast.success("Ошибка регистрация!", toastInfo);
     }
     reset();
   };
@@ -42,13 +46,16 @@ const Register = () => {
     <ContainerPage>
       <Form
         handleSubmit={handleSubmit}
-        handlerSubmitCustom={handlerSubmit}>
+        handlerSubmitCustom={handlerRegister}>
         <RegisterForm
           register={register}
           errors={errors}
           isValid={isValid}
         />
-        <Quest onClick={() => navigate("/login")}>Аккаунт уже создан?</Quest>
+        <QuestList>
+          <Quest onClick={() => navigate("/login")}>Аккаунт уже создан?</Quest>
+          <Quest onClick={() => navigate("/reset")}>Забыли пароль?</Quest>
+        </QuestList>
       </Form>
     </ContainerPage>
   );

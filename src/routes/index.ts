@@ -7,6 +7,7 @@ const Character = lazy(() => import('../pages/Private/Character'))
 const Favorite = lazy(() => import('../pages/Private/Favorite'))
 const NotFound = lazy(() => import('../pages/General/NotFound'))
 const History = lazy(() => import('../pages/Private/History'))
+const Reset = lazy(() => import('../pages/Public/Reset'))
 
 export interface IRoute {
     path: string;
@@ -27,6 +28,7 @@ export enum RoutesNamesPublic {
     HOME = "/",
     LOGIN = "/login",
     REGISTER = "/register",
+    RESET = "/reset",
     NOTFOUND = '/notfound'
 }
 
@@ -47,5 +49,6 @@ export const publicRoutes: IRoute[] = [
     { path: RoutesNamesPublic.HOME, component: Home, type: "Home" },
     { path: RoutesNamesPublic.LOGIN, component: Login, type: "Login" },
     { path: RoutesNamesPublic.REGISTER, component: Register, type: "Register" },
+    { path: RoutesNamesPublic.RESET, component: Reset, type: "Reset" },
     { path: RoutesNamesPublic.NOTFOUND, component: NotFound, type: "NotFound" },
 ];
