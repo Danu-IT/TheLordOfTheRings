@@ -23,8 +23,14 @@ const App = () => {
   }, []);
 
   const fetchTelegramFlag = async () => {
-    const response = await axios.get("http://localhost:5000/api/feature-flags");
-    setIsFeatureFlag(response.data.isTelegramShareEnabled);
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/api/feature-flags"
+      );
+      setIsFeatureFlag(response.data.isTelegramShareEnabled);
+    } catch (e) {
+      if (e) setIsFeatureFlag(false);
+    }
   };
 
   useEffect(() => {

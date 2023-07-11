@@ -52,7 +52,7 @@ const History = () => {
         </Head>
         {history &&
           history.map((el, i) => (
-            <Container>
+            <Container key={el}>
               <LinkCustom to={el}>{searchValue(el)}</LinkCustom>
               <Remove onClick={() => dispatch(removeItemHistory(i))}>
                 Очистить

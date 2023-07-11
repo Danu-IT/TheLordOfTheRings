@@ -25,6 +25,7 @@ const Pagination: FC<PaginationProps> = ({ info, pageState, setPageState }) => {
           Array.from(Array(info.pages).keys()).map((el) => (
             <PaginationItem
               onClick={() => setPageState(el + 1)}
+              key={el}
               current={el + 1 === pageState ? true : false}>
               {el + 1}
             </PaginationItem>

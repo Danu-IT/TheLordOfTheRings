@@ -21,6 +21,7 @@ const Filter = ({ options, title, setOptions }) => {
       <ListFilter>
         {options.map((el) => (
           <FilterItem
+            key={el.id}
             onChange={changeOptions}
             item={el}
           />

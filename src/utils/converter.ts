@@ -1,18 +1,21 @@
 /** Конвертация серверных данных под клиента */
 export const characterConverter = (response: CharacterApi): CharacterCustomElement[] => {
-    return response.docs.map((el: CharacterApiElement) => ({
-        id: el._id,
-        birth: el.birth,
-        death: el.death,
-        gender: el.gender,
-        hair: el.hair,
-        name: el.name,
-        race: el.race,
-        realm: el.realm,
-        spouse: el.spouse,
-        wikiUrl: el.wikiUrl,
-        like: false,
-    }))
+    const convetrData = response.docs.map((el: CharacterApiElement) => {
+        return {
+            id: el._id,
+            birth: el.birth,
+            death: el.death,
+            gender: el.gender,
+            hair: el.hair,
+            name: el.name,
+            race: el.race,
+            realm: el.realm,
+            spouse: el.spouse,
+            wikiUrl: el.wikiUrl,
+            like: false,
+        }
+    })
+    return convetrData.filter(el => el.race === "NaN" ? false : true)
 }
 
 /** Конвертация серверных данных под клиента */

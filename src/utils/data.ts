@@ -6,13 +6,13 @@ export const arrayOfSorts = [
 ]
 
 export const arrayRace: DataRace[] = [
-    { value: 'Hobbit', active: false },
-    { value: 'Human', active: false },
-    { value: 'Elf', active: false },
-    { value: 'Dwarf', active: false },
-    { value: 'Ent', active: false },
-    { value: 'Orc', active: false },
-    { value: 'Troll', active: false }
+    { value: 'Hobbit', active: false, id: 1 },
+    { value: 'Human', active: false, id: 2 },
+    { value: 'Elf', active: false, id: 3 },
+    { value: 'Dwarf', active: false, id: 4 },
+    { value: 'Ent', active: false, id: 5 },
+    { value: 'Orc', active: false, id: 6 },
+    { value: 'Troll', active: false, id: 7 }
 ]
 
 export const toastInfo: ToastOptions<Toast> = {

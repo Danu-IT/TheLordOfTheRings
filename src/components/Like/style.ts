@@ -6,7 +6,7 @@ export const Container = styled.div`
   top: 2px;
   cursor: pointer;
   transition: transform 0.25s ease;
-  &:active{
+  &:hover{
     transform: scale(1.2);
   }
 `;

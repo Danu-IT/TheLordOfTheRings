@@ -1,8 +1,8 @@
 import { collection, doc, getDocs, query, setDoc } from "firebase/firestore"
 import { db } from "."
 
-export const saveItem = async (data: CharacterCustomElement[] | string[], id: string | null, directory: string) => {
-    if (!id || data || directory) return false
+export const saveItem = async (data: CharacterCustomElement[] | string[], id: string, directory: string) => {
+    if (!id || !directory || !data) return false
     await setDoc(doc(db, directory, id), { docs: data }, { merge: true });
 }
 

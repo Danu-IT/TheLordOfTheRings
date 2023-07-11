@@ -18,7 +18,7 @@ const SignOut = () => {
     } catch (e) {}
   };
 
-  return <Container onClick={handleLogout}>Sign out</Container>;
+  return <Container onClick={handleLogout}>Выход</Container>;
 };
 
 export default SignOut;

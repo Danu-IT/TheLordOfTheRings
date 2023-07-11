@@ -1,6 +1,7 @@
 interface DataRace {
     value: string,
     active: boolean
+    id: number;
 }
 
 interface Toast {
@@ -11,11 +12,4 @@ interface Toast {
     pauseOnHover: boolean,
     draggable: boolean,
     progress: undefined,
-}
-
-interface RootState {
-    speciesSlice: {
-        favorites: CharacterCustomElement[];
-        history: string[]
-    }
 }

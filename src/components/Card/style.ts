@@ -39,4 +39,8 @@ export const Share = styled.div`
   position: absolute;
   left: 10px;
   bottom: 10px;
+  transition: transform 0.25s ease;
+  &:hover{
+    transform: scale(1.6);
+  }
 `;

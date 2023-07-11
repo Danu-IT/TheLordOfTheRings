@@ -68,7 +68,7 @@ const Card: FC<CardProps> = ({
         {isFeatureFlag && (
           <Share>
             <Link to={`https://t.me/share/url?url=${item.wikiUrl}))`}>
-              <BiLogoTelegram color="white" />
+              <BiLogoTelegram color="#0088cc" />
             </Link>
           </Share>
         )}

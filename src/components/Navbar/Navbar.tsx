@@ -10,7 +10,10 @@ const Navbar = ({ list }: NavbarProps) => {
   return (
     <Container>
       {list.map((el) => (
-        <NavbarItem item={el} />
+        <NavbarItem
+          key={el.path}
+          item={el}
+        />
       ))}
     </Container>
   );
