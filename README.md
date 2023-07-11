@@ -23,5 +23,5 @@
 
 - Использование TypeScript. ✅
 - Подключен storybook и созданы несколько сторисов - [Button](https://github.com/Danu-IT/thelordoftherings/blob/main/src/components/UI/Button/Button.stories.tsx), [Input](https://github.com/Danu-IT/thelordoftherings/blob/main/src/components/UI/Input/Input.stories.tsx). ✅
-- Feature Flags - [server](https://github.com/Danu-IT/thelordoftherings/blob/main/server/index.js), [react context](https://github.com/Danu-IT/thelordoftherings/blob/main/src/App/App.tsx#L37), [реализация](https://github.com/Danu-IT/thelordoftherings/blob/main/src/components/Card/Card.tsx#L68). ✅
+- Feature Flags - [server](https://github.com/Danu-IT/thelordoftherings/blob/main/server/index.js), [react context](https://github.com/Danu-IT/thelordoftherings/blob/main/src/App/App.tsx#L37), [реализация](https://github.com/Danu-IT/thelordoftherings/blob/main/src/components/Card/Card.tsx#L28). ✅
 - Использование Firebase для учетных записей пользователей и их Избранного и Истории поиска - [config](https://github.com/Danu-IT/thelordoftherings/blob/main/src/firebase/index.ts), [function](https://github.com/Danu-IT/thelordoftherings/blob/main/src/firebase/change.ts). ✅
